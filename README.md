@@ -6,7 +6,7 @@ A full-featured job portal built with the MERN stack (MongoDB, Express.js, React
 
 ## 🔗 Live Demo
 
-- 🌐 Frontend: 
+- 🌐 : https://job-portal-client-umber.vercel.app/
 
 ---
 
