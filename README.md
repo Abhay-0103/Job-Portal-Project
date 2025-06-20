@@ -1,9 +1,8 @@
-```markdown
 # 💼 Job Portal Project
 
 A **MERN stack job portal** where users can browse jobs, apply for jobs, and recruiters can post and manage listings. Includes full **authentication using Clerk**, error tracking via **Sentry**, and a modern responsive UI.
 
-![Job Portal Banner](https://imgur.com/your_banner_image.png) <!-- Replace with your banner image -->
+live Preview :- https://job-portal-client-umber.vercel.app/
 
 ## 🚀 Features
 
@@ -129,20 +128,6 @@ cd client
 npm install
 npm run dev
 ```
-
----
-
-## 🖼️ UI Screenshots
-
-| Home Page                           | Job Details                               |
-| ----------------------------------- | ----------------------------------------- |
-| ![home](https://imgur.com/home.png) | ![details](https://imgur.com/details.png) |
-
-| Recruiter Dashboard                           | Applications                                        |
-| --------------------------------------------- | --------------------------------------------------- |
-| ![dashboard](https://imgur.com/dashboard.png) | ![applications](https://imgur.com/applications.png) |
-
----
 
 ## ☁️ Deployment
 
