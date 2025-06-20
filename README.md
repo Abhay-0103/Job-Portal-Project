@@ -1,154 +1,225 @@
-# 🧑‍💼 Job Portal — MERN Stack Project
+```markdown
+# 💼 Job Portal Project
 
-A full-featured job portal built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows recruiters to post jobs and job seekers to apply.
+A **MERN stack job portal** where users can browse jobs, apply for jobs, and recruiters can post and manage listings. Includes full **authentication using Clerk**, error tracking via **Sentry**, and a modern responsive UI.
 
----
+![Job Portal Banner](https://imgur.com/your_banner_image.png) <!-- Replace with your banner image -->
 
-## 🔗 Live Demo
+## 🚀 Features
 
-- 🌐 : https://job-portal-client-umber.vercel.app/
-
----
-
-## ⚙️ Tech Stack
-
-| Technology      | Description                      |
-|-----------------|----------------------------------|
-| React + Vite    | Frontend                         |
-| TailwindCSS     | Styling                          |
-| Node.js + Express | Backend API                   |
-| MongoDB Atlas   | Cloud Database                   |
-| Clerk Auth      | Authentication & Authorization   |
-| Axios           | API Communication                |
-| Sentry          | Error Monitoring (Frontend & Backend) |
+- 👨‍💼 Job seeker and recruiter flows
+- 🔐 Authentication using Clerk
+- 📂 Post, apply, and manage job listings
+- ⚙️ Real-time updates using React Context
+- 📊 Error tracking with Sentry
+- 🖥️ Responsive, modern UI (React + Tailwind CSS)
+- 🌐 RESTful API using Express.js
+- 💾 MongoDB for data storage
 
 ---
 
-## 📁 Folder Structure
+## 🛠 Tech Stack
 
-Job-Portal/
-├── client/ # React Frontend (Vite)
+**Frontend:**
+- React.js (with Vite)
+- Tailwind CSS
+- React Router
+- Axios
+- Clerk for Auth
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB & Mongoose
+- dotenv for env config
+- CORS + Middleware
+
+**Other Tools:**
+- Sentry (Error Monitoring)
+- Vercel (Frontend deployment)
+- Render / Railway (Backend deployment)
+
+---
+
+## 📂 Folder Structure
+
+```
+
+Job-Portal-Project/
+├── client/                 # Frontend (React + Vite)
+│   ├── assets/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── ...
 ├── config/
-│ └── db.js # MongoDB connection setup
-├── controllers/ # All backend logic
-├── middleware/ # Authentication middleware
-├── models/ # Mongoose schemas
-├── routes/ # Express routes
-├── server.js # Server entry point
-├── .env # Environment variables
-└── README.md # Project documentation
+│   └── db.js               # MongoDB connection setup
+├── controllers/
+│   └── jobController.js
+├── models/
+│   └── Job.js
+├── routes/
+│   └── jobRoutes.js
+├── index.js                # Express server entry
+├── .env.example            # Sample environment file
+└── README.md
 
-yaml
-Copy
-Edit
+````
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file at the root with the following:
+
+```bash
+MONGODB_URI=your_mongo_db_connection_string
+PORT=5000
+CLERK_SECRET_KEY=your_clerk_backend_key
+CLERK_PUBLISHABLE_KEY=your_clerk_frontend_key
+````
 
 ---
 
 ## 🚀 Getting Started
 
-### ✅ 1. Clone the Repository
+### ✅ Prerequisites
+
+* Node.js ≥ 18.x
+* MongoDB Atlas account or local instance
+* Clerk account ([https://clerk.dev](https://clerk.dev))
+* Vercel account (for deployment)
+
+---
+
+### 📦 Installation
+
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Abhay-0103/Job-Portal-Project.git
-cd Job-Portal
-🔐 2. Setup Backend Environment Variables
-Create a .env file in the root folder:
+cd Job-Portal-Project
+```
 
-env
-Copy
-Edit
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-CLERK_SECRET_KEY=your_clerk_secret_key
-Get your Clerk keys from: https://dashboard.clerk.com
-Get MongoDB URI from: https://cloud.mongodb.com
+#### 2. Install backend dependencies
 
-📦 3. Install Backend Dependencies
-bash
-Copy
-Edit
+```bash
 npm install
-▶️ 4. Run the Backend Server
-bash
-Copy
-Edit
-npm start
-Backend will start on: http://localhost:5000
+```
 
-💻 5. Setup Frontend (React + Vite)
-bash
-Copy
-Edit
+#### 3. Setup environment variables
+
+```bash
+cp .env.example .env
+# Then fill in the actual values
+```
+
+#### 4. Start the backend server
+
+```bash
+npm run dev
+```
+
+#### 5. Set up the frontend
+
+```bash
 cd client
 npm install
-⚙️ 6. Setup Frontend Environment Variables
-Create a .env file inside /client folder:
-
-env
-Copy
-Edit
-VITE_BACKEND_URL=http://localhost:5000
-VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-🚀 7. Run the Frontend
-bash
-Copy
-Edit
 npm run dev
-Frontend will run on: http://localhost:5173
+```
 
-🔐 Authentication Flow
-Clerk handles user authentication (sign-up/sign-in).
+---
 
-Backend validates Clerk session tokens using middleware.
+## 🖼️ UI Screenshots
 
-Users can:
+| Home Page                           | Job Details                               |
+| ----------------------------------- | ----------------------------------------- |
+| ![home](https://imgur.com/home.png) | ![details](https://imgur.com/details.png) |
 
-View jobs
+| Recruiter Dashboard                           | Applications                                        |
+| --------------------------------------------- | --------------------------------------------------- |
+| ![dashboard](https://imgur.com/dashboard.png) | ![applications](https://imgur.com/applications.png) |
 
-Apply for jobs (must be logged in)
+---
 
-View applications
+## ☁️ Deployment
 
-Recruiters can:
+### 🔹 Frontend - Vercel
 
-Login and post jobs
+1. Push the `/client` folder to a separate GitHub repo or subfolder
+2. Connect to Vercel → Select React + Vite → Add env variables
+3. Set `VITE_BACKEND_URL=https://your-backend-url.com`
 
-Manage applicants and job listings
+### 🔹 Backend - Render or Railway
 
-🧑‍💻 Key Features
-For Job Seekers:
-Browse all jobs
+1. Connect your GitHub repo
+2. Add env variables (`MONGODB_URI`, `PORT`, `CLERK_SECRET_KEY`)
+3. Deploy server
 
-Apply for jobs
+---
 
-View their applications
+## 🧠 Known Issues
 
-For Recruiters:
-Login securely
+* Error messages not always descriptive (improve validations)
+* Recruiter login is simple (can be upgraded to Clerk multi-role support)
+* Job filters can be improved using fuzzy search
 
-Post new job listings
+---
 
-View/manage posted jobs
+## ✨ Future Enhancements
 
-Track applicants for each job
+* Add pagination and filtering to job listings
+* Role-based dashboards (admin, recruiter, seeker)
+* Email notifications (SendGrid or Resend)
+* Resume upload (Cloudinary or Firebase)
+* Job recommendations using AI
 
-🧪 Error Monitoring
-Integrated with Sentry to track runtime errors and improve debugging experience.
+---
 
-🧹 Deployment Notes
-✅ Vercel (Frontend):
-Deployed via Vercel
+## 🙌 Acknowledgements
 
-Set the following environment variables in Vercel:
+* [Clerk.dev](https://clerk.dev) for seamless auth
+* [Sentry.io](https://sentry.io) for error tracking
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+* [TailwindCSS](https://tailwindcss.com/)
+* [Vite](https://vitejs.dev/)
 
-VITE_BACKEND_URL
+---
 
-VITE_CLERK_PUBLISHABLE_KEY
+## 👨‍💻 Author
 
-✅ MongoDB Atlas:
-Whitelist your IP as 0.0.0.0/0 to allow access from Vercel.
+**Abhay Singh**
+📧 [abhay0103dev@gmail.com](mailto:abhay0103dev@gmail.com)
+🔗 [GitHub](https://github.com/Abhay-0103) | [LinkedIn](https://linkedin.com/in/abhay0103)
 
+---
 
-💡 Contributing
-Pull requests and suggestions are welcome!
+## ⭐ Show Your Support
+
+If you like this project, consider giving it a ⭐ on GitHub!
+
+```bash
+git clone https://github.com/Abhay-0103/Job-Portal-Project
+cd Job-Portal-Project
+```
+
+---
+
+## 📃 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+```
+
+---
+
+Let me know if you'd like:
+- Live preview badges
+- Markdown badge icons (like GitHub stars, forks, tech badges)
+- Deployment setup examples (Render, Vercel, Railway)
+- Hindi README version
+
+Ready to copy → paste → commit! ✅
+```
