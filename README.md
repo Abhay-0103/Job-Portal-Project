@@ -189,22 +189,3 @@ If you like this project, consider giving it a ⭐ on GitHub!
 git clone https://github.com/Abhay-0103/Job-Portal-Project
 cd Job-Portal-Project
 ```
-
----
-
-## 📃 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-```
-
----
-
-Let me know if you'd like:
-- Live preview badges
-- Markdown badge icons (like GitHub stars, forks, tech badges)
-- Deployment setup examples (Render, Vercel, Railway)
-- Hindi README version
-
-Ready to copy → paste → commit! ✅
-```
