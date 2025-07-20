@@ -2,7 +2,9 @@
 
 A **MERN stack job portal** where users can browse jobs, apply for jobs, and recruiters can post and manage listings. Includes full **authentication using Clerk**, error tracking via **Sentry**, and a modern responsive UI.
 
-live Preview :- https://job-portal-client-umber.vercel.app/
+
+## live Preview :- https://job-portal-client-umber.vercel.app/
+
 
 ## 🚀 Features
 
