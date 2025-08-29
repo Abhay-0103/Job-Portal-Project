@@ -1,6 +1,6 @@
 # 💼 Job Portal Project
 
-A **MERN stack job portal** where users can browse jobs, apply for jobs, and recruiters can post and manage listings. Includes full **authentication using Clerk**, error tracking via **Sentry**, and a modern responsive UI.
+A **MERN stack job portal** where users can browse jobs, apply for jobs, and recruiters can post and manage listings. Includes full **authentication using Clerk**, error tracking via **Sentry**, and a modern responsive UI with Tailwind CSS.
 
 
 ## Live Preview :- https://job-portal-client-two-sand.vercel.app/
