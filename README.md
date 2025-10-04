@@ -1,4 +1,4 @@
-# 💼 Job Portal Project
+### 💼 Job Portal Project
 
 A **MERN stack job portal** where users can browse jobs, apply for jobs, and recruiters can post and manage listings. Includes full **authentication using Clerk**, error tracking via **Sentry**, and a modern responsive UI with Tailwind CSS.
 
@@ -45,27 +45,106 @@ A **MERN stack job portal** where users can browse jobs, apply for jobs, and rec
 ## 📂 Folder Structure
 
 ```
-
 Job-Portal-Project/
-├── client/                 # Frontend (React + Vite)
-│   ├── assets/
-│   ├── components/
-│   ├── context/
-│   ├── pages/
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── ...
-├── config/
-│   └── db.js               # MongoDB connection setup
-├── controllers/
-│   └── jobController.js
-├── models/
-│   └── Job.js
-├── routes/
-│   └── jobRoutes.js
-├── index.js                # Express server entry
-├── .env.example            # Sample environment file
-└── README.md
+├── client/                     # Frontend
+│   ├── public/                 # Static assets served directly
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   └── robots.txt
+│   │
+│   ├── src/
+│   │   ├── assets/             # Images, fonts, icons
+│   │   │   ├── images/
+│   │   │   │   └── logo.png
+│   │   │   └── fonts/
+│   │   │
+│   │   ├── components/         # Reusable UI components
+│   │   │   ├── Button.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── JobCard.jsx
+│   │   │   └── Loader.jsx
+│   │   │
+│   │   ├── contexts/           # React Contexts for global state
+│   │   │   ├── AuthContext.jsx
+│   │   │   ├── UserContext.jsx
+│   │   │   └── JobContext.jsx
+│   │   │
+│   │   ├── hooks/              # Custom React hooks
+│   │   │   ├── useFetch.js
+│   │   │   ├── useAuth.js
+│   │   │   └── useDebounce.js
+│   │   │
+│   │   ├── pages/              # Route-based pages
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── JobDetails.jsx
+│   │   │   └── Profile.jsx
+│   │   │
+│   │   ├── services/           # API calls and utilities
+│   │   │   ├── api.js          # Axios or fetch wrapper
+│   │   │   └── authService.js  # Login/Register API calls
+│   │   │
+│   │   ├── store/              # Optional: Redux or Zustand store
+│   │   │   └── index.js
+│   │   │
+│   │   ├── styles/             # Tailwind + global CSS
+│   │   │   ├── tailwind.css
+│   │   │   └── global.css
+│   │   │
+│   │   ├── App.jsx             # Main React App
+│   │   └── main.jsx            # Entry point
+│   │
+│   ├── .env                    # Frontend environment variables
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/                     # Backend
+│   ├── config/                 # Configuration files
+│   │   ├── db.js               # MongoDB connection
+│   │   ├── serverConfig.js     # Server port, CORS, etc.
+│   │   └── logger.js           # Winston or any logging setup
+│   │
+│   ├── controllers/            # Route handlers
+│   │   ├── authController.js   # Login, Register
+│   │   ├── jobController.js    # CRUD jobs
+│   │   ├── userController.js   # Profile, applications
+│   │   └── applicationController.js # Apply/Manage applications
+│   │
+│   ├── middleware/             # Custom middlewares
+│   │   ├── authMiddleware.js   # Auth check
+│   │   ├── errorMiddleware.js  # Central error handling
+│   │   └── rateLimiter.js      # Optional: security
+│   │
+│   ├── models/                 # Mongoose schemas
+│   │   ├── User.js
+│   │   ├── Job.js
+│   │   └── Application.js
+│   │
+│   ├── routes/                 # Express routes
+│   │   ├── authRoutes.js
+│   │   ├── jobRoutes.js
+│   │   ├── userRoutes.js
+│   │   └── applicationRoutes.js
+│   │
+│   ├── services/               # Business logic
+│   │   ├── authService.js
+│   │   ├── jobService.js
+│   │   └── userService.js
+│   │
+│   ├── utils/                  # Utilities/helper functions
+│   │   ├── tokenGenerator.js
+│   │   └── emailSender.js
+│   │
+│   ├── .env                    # Backend environment variables
+│   ├── app.js                  # Express app setup
+│   └── server.js               # Server start
+│
+├── .gitignore
+├── README.md
+└── package.json                # Root dependencies and scripts
 
 ````
 
