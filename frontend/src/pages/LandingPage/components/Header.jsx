@@ -17,12 +17,17 @@ const Header = () => {
             <div className="w-8 h-8 bg-gradient-to-r  from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900 cursor-pointer">Job-Portal</span>
+            <span className="text-xl font-bold text-gray-900 cursor-pointer">
+              Job-Portal
+            </span>
           </div>
 
           {/* Navigation Links - Hidden on mobile */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a onClick={() => Navigate("/find-jobs")} className="cursor-pointer text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            <a
+              onClick={() => Navigate("/find-jobs")}
+              className="cursor-pointer text-gray-600 hover:text-gray-900 transition-colors font-medium"
+            >
               Find Jobs
             </a>
             <a
@@ -43,7 +48,9 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             {isAuthenticated ? (
               <div className="flex items-center space-x-3">
-                <span className="text-gray-700 cursor-pointer">Welcome, {user?.FullName}</span>
+                <span className="text-gray-700 cursor-pointer">
+                  Welcome, {user?.FullName}
+                </span>
                 <a
                   href={
                     user?.role === "employer"
@@ -57,10 +64,16 @@ const Header = () => {
               </div>
             ) : (
               <>
-                <a href="/login" className="cursor-pointer text-gray-600 hover:text-gray-900 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-50">
+                <a
+                  href="/login"
+                  className="cursor-pointer text-gray-600 hover:text-gray-900 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-50"
+                >
                   Login
                 </a>
-                <a href="/signup" className="cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                <a
+                  href="/signup"
+                  className="cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md"
+                >
                   Sign Up
                 </a>
               </>
