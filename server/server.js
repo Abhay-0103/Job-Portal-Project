@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import './config/cloudinary.js' // ensure cloudinary is initialized
 import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
@@ -24,7 +25,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 // Request logging
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`)
+  console.log(`📍 ${req.method} ${req.path}`)
   next()
 })
 
@@ -88,13 +89,18 @@ app.get("/health", (req, res) => {
   })
 })
 
-// API Routes
+// API Routes - WITH LOGGING
+console.log('🔧 Registering API routes...')
 app.use("/api/jobs", jobRoutes)
+console.log('✅ Job routes registered at /api/jobs')
 app.use("/api/company", companyRoutes)
+console.log('✅ Company routes registered at /api/company')
 app.use("/api/users", userRoutes)
+console.log('✅ User routes registered at /api/users')
 
 // 404 handler
 app.use((req, res) => {
+  console.log(`❌ 404 Not Found: ${req.method} ${req.path}`)
   res.status(404).json({ 
     success: false, 
     message: "Route not found",

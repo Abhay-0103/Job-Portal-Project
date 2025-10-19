@@ -1,32 +1,41 @@
 import express from 'express'
-import { ChangeJobApplicationsStatus, changeVisiblity, getCompanyData, getCompanyJobApplicants, getCompanyPostedJobs, loginCompany, postJob, registerCompany } from '../controllers/companyController.js'
+import { 
+  changeApplicationStatus, 
+  changeJobVisibility, 
+  getCompanyData, 
+  getCompanyJobApplications, 
+  getCompanyJobList, 
+  loginCompany, 
+  postJob, 
+  registerCompany 
+} from '../controllers/companyController.js'
 import upload from '../config/multer.js'
-import { protectCompany } from '../middleware/authMiddleware.js'
+import { protectCompanyRoute } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-// Register a company
+// Register Company
 router.post('/register', upload.single('image'), registerCompany)
 
-// Company login
+// Login Company
 router.post('/login', loginCompany)
 
-// Get company data
-router.get('/company', protectCompany, getCompanyData)
+// Get Company Data
+router.get('/company', protectCompanyRoute, getCompanyData)
 
-// Post a job
-router.post('/post-job', protectCompany, postJob)
+// Post a Job
+router.post('/post-job', protectCompanyRoute, postJob)
 
-// Get Applicants Data of Company
-router.get('/applicants', protectCompany, getCompanyJobApplicants)
+// Get Company Job Applicants
+router.get('/applicants', protectCompanyRoute, getCompanyJobApplications)
 
-// Get  Company Job List
-router.get('/list-jobs', protectCompany, getCompanyPostedJobs)
+// Get Company Posted Jobs List
+router.get('/list-jobs', protectCompanyRoute, getCompanyJobList)
 
-// Change Applcations Status 
-router.post('/change-status', protectCompany, ChangeJobApplicationsStatus)
+// Change Application Status
+router.post('/change-status', protectCompanyRoute, changeApplicationStatus)
 
-// Change Applcations Visiblity 
-router.post('/change-visiblity', protectCompany, changeVisiblity)
+// Change Job Visibility
+router.post('/change-visiblity', protectCompanyRoute, changeJobVisibility)
 
 export default router
