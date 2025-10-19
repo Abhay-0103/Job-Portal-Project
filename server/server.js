@@ -2,45 +2,117 @@ import './config/instrument.js';
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-import connectDB from './config/db.js';
-import * as Sentry from '@sentry/node';
+import mongoose from 'mongoose';
 import { clerkWebhooks } from './controllers/webhooks.js';
-import companyRoutes from './routes/companyRoutes.js';
-import connectCloudinary from './config/cloudinary.js';
+
+// Import routes
 import jobRoutes from './routes/jobRoutes.js';
+import companyRoutes from './routes/companyRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import { clerkMiddleware } from '@clerk/express';
-import bodyParser from 'body-parser';
 
 const app = express();
 
-(async () => {
-  await connectDB();
-  await connectCloudinary();
+// CORS
+const allowedOrigins = [
+  process.env.CLIENT_ORIGIN,
+  'http://localhost:5173',
+  'https://job-portal-project-rust.vercel.app'
+].filter(Boolean);
 
-  // ✅ Webhook route FIRST with raw parser
-app.post("/webhooks", bodyParser.raw({ type: "application/json" }), clerkWebhooks);
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: false,
+}));
 
-  // ✅ Standard middlewares AFTER webhook
-  app.use(cors());
-  app.use(express.json());
-  app.use(clerkMiddleware({ secretKey: process.env.CLERK_SECRET_KEY }));
+// Webhook route - MUST be before express.json()
+app.post("/webhooks/clerk", express.json(), clerkWebhooks);
 
-  // ✅ Routes
-  app.get('/', (req, res) => res.send('API Working ✅'));
-  app.get('/debug-sentry', (req, res) => {
-    throw new Error('Manual sentry test error!');
+// Body parsers
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Logging
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
+
+// Connect to MongoDB
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected) {
+    console.log('Using existing MongoDB connection');
+    return;
+  }
+
+  try {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) throw new Error('MONGODB_URI not defined');
+    
+    await mongoose.connect(uri, {
+      bufferCommands: false,
+    });
+    
+    isConnected = true;
+    console.log('✅ MongoDB Connected');
+  } catch (error) {
+    console.error('❌ MongoDB Error:', error.message);
+    throw error;
+  }
+}
+
+// Connect on startup
+connectDB();
+
+// Health check
+app.get("/health", (req, res) => {
+  res.json({ 
+    ok: true, 
+    mongodb: mongoose.connection.readyState === 1,
+    timestamp: new Date().toISOString()
   });
+});
 
-  app.use('/api/company', companyRoutes);
-  app.use('/api/jobs', jobRoutes);
-  app.use('/api/users', userRoutes);
+// API Routes
+app.use("/api/jobs", jobRoutes);
+app.use("/api/company", companyRoutes);
+app.use("/api/users", userRoutes);
 
-  // ✅ Sentry error reporting
-  Sentry.setupExpressErrorHandler(app);
+console.log('✅ Routes registered');
 
+// 404 handler
+app.use((req, res) => {
+  console.log(`❌ 404: ${req.method} ${req.path}`);
+  res.status(404).json({ 
+    success: false, 
+    message: "Route not found",
+    path: req.path 
+  });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ 
+    success: false, 
+    message: err.message || 'Internal server error' 
+  });
+});
+
+// For Vercel serverless
+export default app;
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
   });
-})();
+}

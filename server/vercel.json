@@ -8,8 +8,16 @@
   ],
   "routes": [
     {
-      "src": "/webhooks",
-      "methods": ["POST"],
+      "src": "/webhooks/clerk",
+      "dest": "server.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/health",
       "dest": "server.js"
     },
     {
