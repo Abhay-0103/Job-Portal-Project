@@ -14,6 +14,11 @@ import {
   CheckCircle,
 } from "lucide-react";
 
+// Local Imports
+import { validateEmail } from "../../utils/helper";
+import { validatePassword } from "../../utils/helper";
+import { validateAvatar } from "../../utils/helper";
+
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -51,13 +56,85 @@ const SignUp = () => {
     }
   };
 
-  const handleRoleChange = (e) => {};
+  const handleRoleChange = (role) => {
+    setFormData((prev) => ({
+      ...prev, role: role
+    }));
+    if (formState.error.role) {
+      setFormState((prev) => ({
+        ...prev,
+        error: { ...prev.error, role: "" },
+      }));
+    }
+  };
 
-  const handleAvatarChange = (e) => {};
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const error = validateAvatar(file);
+      if (error) {
+        setFormState((prev) => ({
+          ...prev,
+          error: { ...prev.error, avatar: error },
+        }));
+        return;
+      }
+      setFormData((prev) => ({ ...prev, avatar: file, }));
 
-  const validateForm = () => {};
+      // Create a preview
+      const reader = new FileReader();
+      reader.onloadend = (e) => {
+        setFormState((prev) => ({
+          ...prev,
+          avatarPreview: e.target.result,
+          error: { ...prev.error, avatar: "" },
+        }));
+      }
+      reader.readAsDataURL(file);
+    }
+  };
 
-  const handleSubmit = async (e) => {};
+  const validateForm = () => {
+    const errors = {
+      fullName: !formData.fullName ? "Enter your full name." : "",
+      email: validateEmail(formData.email),
+      password: validatePassword(formData.password),
+      role: !formData.role ? "Select a role." : "",
+      avatar: "",
+    };
+ // Remove empty errors
+ Object.keys(errors).forEach(key => {
+    if (!errors[key]) delete errors[key];  
+ });
+
+ setFormState((prev) => ({ ...prev, error: errors, }));
+ return Object.keys(errors).length === 0;
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setFormState((prev) => ({ ...prev, loading: true }));
+
+    try {
+      
+    } catch (error) {
+      console.log("error", error);
+
+      setFormState((prev) => ({
+        ...prev,
+        loading: false,
+        error: {
+          submit: 
+           error.response?.data?.message ||
+           "Registration failed. Please try again.",
+        },
+      }));
+    }
+  };
 
   if (formState.success) {
       return (
@@ -205,19 +282,19 @@ const SignUp = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Profile Picture (Optional)  
           </label>
-          <div className="flex items-center">
-           <div className="relative">
+          <div className="flex items-center space-x-4">
+           <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
             {formState.avatarPreview ? ( 
               <img
                 src={formState.avatarPreview} 
                 alt="Avatar Preview"
-                className="w-16 h-16 rounded-full object-cover border"
+                className="w-full h-full object-cover"
                 />
             ) : (
-              <User className="w-16 h-16 text-gray-300 border rounded-full p-3" />
+              <User className="w-8 h-8 text-gray-400" />
             )}
             </div>
-            <div className="ml-4">
+            <div className="flex-1">
                 <input
                   type="file"
                   id="avatar"
@@ -227,13 +304,13 @@ const SignUp = () => {
                 />
                 <label
                   htmlFor="avatar"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700 transition-colors text-sm"
+                  className="cursor-pointer bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors flex items-center space-x-2"
                 > 
-                <Upload className="w-4 h-4 inline-block mr-2" />
+                <Upload className="w-4 h-4" />
                 <span>Upload Photo</span>
                 </label>
                 <p className="text-xs text-gray-500 mt-1">
-                  Supported formats: JPG, PNG. Max size: 5MB.
+                  Supported formats: JPEG, JPG, PNG. Max size: 5MB.
                 </p>
             </div>
           </div>
@@ -246,11 +323,94 @@ const SignUp = () => {
         </div>
 
         {/* Role Selection */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            I am a *
+          </label>
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              type="button"
+              onClick={() => handleRoleChange("jobSeeker")}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                formData.role === "jobSeeker"
+                  ? "border-blue-500 bg-blue-50 text-blue-700"
+                  : "border-gray-200 hover:border-gray-400"
+              }`}
+              >
+              <UserCheck className="w-8 h-8 mb-2 mx-auto" />
+              <div className="font-medium">Job Seeker</div>
+            <div className="text-xs text-gray-500">
+              Looking for your dream job
+            </div>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleRoleChange("employer")}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                formData.role === "employer"
+                  ? "border-blue-500 bg-blue-50 text-blue-700"
+                  : "border-gray-200 hover:border-gray-400"
+              }`}
+              >
+              <Building2 className="w-8 h-8 mb-2 mx-auto" />
+              <div className="font-medium">Employer</div>
+              <div className="text-xs text-gray-500">
+                Hiring top talent
+              </div>
+                
+                </button>
+              </div>
+            
+          {formState.error.role && (
+            <p className="text-red-500 text-sm mt-1 flex items-center">
+              <AlertCircle className="w-4 h-4 mr-1" />
+              {formState.error.role}
+            </p>
+          )}
+        </div>
 
+          {/* Submit Error */}
+          {formState.error.submit && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p className="text-red-700 text-sm flex items-center">
+                <AlertCircle className="w-4 h-4 mr-2" />
+                {formState.error.submit}
+              </p>
+            </div>
+          )}
+
+          {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={formState.loading}
+              className="cursor-pointer w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              >
+              {formState.loading ? (
+                <>
+                <Loader className="w-5 h-5 animate-spin" />
+                <span className="ml-2">Creating Account...</span>
+                </>
+              ) : (
+                <span>Create Account</span>
+              )}
+            </button>
+          
+          {/* Login Link */}
+          <div className="text-center">
+            <p className="text-gray-600">
+              Already have an account?{" "}
+              <a 
+              href="/login" 
+              className="text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Sign In Here
+              </a>
+            </p>
+          </div>
 
       </form>
     </motion.div>
-  </div>;
+  </div>
 
 };
 
