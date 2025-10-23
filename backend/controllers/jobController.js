@@ -94,7 +94,32 @@ exports.getJobs = async (req, res) => {
 // @desc   Get jobs posted by the logged-in user (Employer only)
 exports.getJobsEmployer = async (req, res) => {
     try {
+        const userId = req.user._id;
+        const { role } = req.user;
 
+        if (role !== 'employer') {
+            return res.status(403).json({ message: 'Access denied' });
+        }
+
+        // Get all jobs posted by this employer
+        const jobs = await Job.find({ company: userId })
+        .populate('company', 'name companyName companyLogo')
+        .lean(); // .lean() to get plain JS objects
+
+        // Count applications for each job
+        const jobsWithApplicationCounts = await Promise.all(
+            jobs.map(async (job) => {
+            const applicationCount = await Application.countDocuments({ 
+                job: job._id,
+            });
+            return {
+                ...job,
+                applicationCount,
+            };
+        })
+        );
+
+        res.json(jobsWithApplicationCounts);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
