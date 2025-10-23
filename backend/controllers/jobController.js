@@ -2,7 +2,7 @@ const Job = require('../models/Job');
 const User = require('../models/User');
 const Application = require('../models/Application');
 const SavedJob = require('../models/SavedJob');
-const { application } = require('express');
+
 
 // @desc   Create a new job posting (Employer only)
 exports.createJob = async (req, res) => {
