@@ -186,16 +186,19 @@ exports.updateJob = async (req, res) => {
 // @desc   Delete a job posting (Employer only)
 exports.deleteJob = async (req, res) => {
     try {
+        const job = await Job.findById(req.params.id);
+        if (!job) {
+            return res.status(404).json({ message: 'Job not found' });
+        }
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+        if (job.company.toString() !== req.user._id.toString()) {
+            return res
+            .status(403)
+            .json({ message: 'Not Authorized to delete this job' });
+        }
 
-// @desc   Delete a job (Employer only)
-exports.deleteJob = async (req, res) => {
-    try {
-
+        await job.deleteOne();
+        res.json({ message: 'Job deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
