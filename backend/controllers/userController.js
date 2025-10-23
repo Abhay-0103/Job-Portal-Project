@@ -5,6 +5,7 @@ const User = require('../models/User');
 // @desc   Update user profile (name, avatar, company details)
 exports.updateProfile = async (req, res) => {
     try {
+        const { name, avatar, companyName, companyDescription, companyLogo, resume } = req.body;
         const user = await User.findById(req.user._id);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
