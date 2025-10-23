@@ -103,20 +103,20 @@ exports.getJobsEmployer = async (req, res) => {
 
         // Get all jobs posted by this employer
         const jobs = await Job.find({ company: userId })
-        .populate('company', 'name companyName companyLogo')
-        .lean(); // .lean() to get plain JS objects
+            .populate('company', 'name companyName companyLogo')
+            .lean(); // .lean() to get plain JS objects
 
         // Count applications for each job
         const jobsWithApplicationCounts = await Promise.all(
             jobs.map(async (job) => {
-            const applicationCount = await Application.countDocuments({ 
-                job: job._id,
-            });
-            return {
-                ...job,
-                applicationCount,
-            };
-        })
+                const applicationCount = await Application.countDocuments({
+                    job: job._id,
+                });
+                return {
+                    ...job,
+                    applicationCount,
+                };
+            })
         );
 
         res.json(jobsWithApplicationCounts);
@@ -128,7 +128,34 @@ exports.getJobsEmployer = async (req, res) => {
 // @desc   Get single job by ID
 exports.getJobById = async (req, res) => {
     try {
+        const { userId } = req.query;
 
+        const job = await Job.findById(req.params.id).populate(
+            'company',
+            'name companyName companyLogo'
+        );
+
+        if (!job) {
+            return res.status(404).json({ message: 'Job not found' });
+        }
+
+        let applicationStatus = null;
+
+        if (userId) {
+            const application = await Application.findOne({
+                job: job._id,
+                applicant: userId,
+            }).select('status');
+
+            if (application) {
+                applicationStatus = application.status;
+            }
+        }
+
+        res.json({
+            ...job.toObject(),
+            applicationStatus
+        });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
