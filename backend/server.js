@@ -8,6 +8,7 @@ const connectDB = require("./config/db");
 // local imports
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const jobRoutes = require("./routes/jobRoutes");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use('/api/jobs', jobRoutes);
 
 // serve uploads folder 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {}));
