@@ -21,7 +21,8 @@ exports.saveJob = async (req, res) => {
 // Unsave a job
 exports.unsaveJob = async (req, res) => {
      try {
-
+        await SavedJob.findOneAndDelete({ job: req.params.jobId, jobseeker: req.user._id });
+        res.json({ message: "Job removed from saved list" });
     } catch (err) {
         res.status(500).json({ message: "Failed to remove saved job", error: err.message });
     }
