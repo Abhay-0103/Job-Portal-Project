@@ -17,7 +17,7 @@ const applicationSchema = new mongoose.Schema(
         }, // URL or path to the resume
         status: {
             type: String,
-            enum: ['Applied', 'Under Review', 'Rejected', 'Accepted'],
+            enum: ['Applied', 'In Review', 'Rejected', 'Accepted'],
             default: 'Applied',
         },
     },
