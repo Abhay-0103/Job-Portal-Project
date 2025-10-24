@@ -79,7 +79,7 @@ exports.getApplicationById = async (req, res) => {
         }
 
         res.json(app);
-    } catch (error) {
+    } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
@@ -87,7 +87,17 @@ exports.getApplicationById = async (req, res) => {
 // @desc   Update application status (Employer only)
 exports.updateStatus = async (req, res) => {
     try {
+        const { status } = req.body;
+        const app = await Application.findById(req.params.id).populate("job");
 
+        if (!app || app.job.company.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: 'Not authorized to update this application' });
+        }
+
+        app.status = status;
+        await app.save();
+
+        res.json({ message: 'Application status updated', status });
     } catch (error) {
         res.status(500).json({ message: err.message });
     }
