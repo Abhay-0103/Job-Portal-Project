@@ -4,7 +4,26 @@ const Job = require("../models/Job");
 // @desc   Apply for a job
 exports.applyToJob = async (req, res) => {
     try {
+        if (req.user.role !== 'jobseeker') {
+            return res.status(403).json({ message: 'Only jobseekers can apply for jobs' });
+        }
 
+        const existing = await Application.findOne({
+            job: req.params.jobId,
+            applicant: req.user._id,
+        });
+
+        if (existing) {
+            return res.status(400).json({ message: 'You have already applied for this job' });
+        }
+
+        const application = await Application.create({
+            job: req.params.jobId,
+            applicant: req.user._id,
+            resume: req.user.resume, // assuming resume is stored in user profile 
+        });
+
+        res.status(201).json(application);
     } catch (error) {
         res.status(500).json({ message: err.message });
     }
