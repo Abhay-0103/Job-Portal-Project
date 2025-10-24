@@ -98,7 +98,7 @@ exports.updateStatus = async (req, res) => {
         await app.save();
 
         res.json({ message: 'Application status updated', status });
-    } catch (error) {
+    } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
