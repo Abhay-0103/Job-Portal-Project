@@ -2,8 +2,8 @@ const multer = require('multer');
 
 // Configure storage for uploaded files
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Specify the destination directory
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Specify the destination directory
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`) // Specify the file name
@@ -18,7 +18,7 @@ const fileFilter = (req, file, cb) => {
     }
     else {
         cb(new Error('Invalid file type. Only JPEG, PNG, JPG, and PDF are allowed.'), false);
-    }   
+    }
 };
 
 // Initialize multer with the defined storage and file filter
