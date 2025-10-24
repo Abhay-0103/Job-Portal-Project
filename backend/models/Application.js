@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const applicationSchema = new mongoose.Schema(
     {
         job: {
-            type: mongoose.Schema.Types.ObjectId,   
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Job',
             required: true,
         },
         applicant: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',    
+            ref: 'User',
             required: true,
         },
         resume: {
             type: String,
         }, // URL or path to the resume
-status: {
+        status: {
             type: String,
             enum: ['Applied', 'Under Review', 'Rejected', 'Accepted'],
             default: 'Applied',
