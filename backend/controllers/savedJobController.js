@@ -31,7 +31,15 @@ exports.unsaveJob = async (req, res) => {
 // Get saved jobs for current user
 exports.getMySavedJobs = async (req, res) => {
      try {
-
+        const savedJobs = await SavedJob.find({ jobseeker: req.user._id })
+        .populate({
+            path: 'job',
+            populate: {
+                path: "company",
+                select: "name companyName companyLogo"
+            },
+     });
+        res.json(savedJobs);
     } catch (err) {
         res.status(500).json({ message: "Failed to fetch saved jobs", error: err.message });
     }
