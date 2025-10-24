@@ -46,14 +46,14 @@ exports.getMyApplications = async (req, res) => {
 exports.getApplicantsForJob = async (req, res) => {
     try {
         const job = await Job.findById(req.params.jobId);
-       
-        if  (!job || job.company.toString() !== req.user._id.toString()) {
+
+        if (!job || job.company.toString() !== req.user._id.toString()) {
             return res.status(403).json({ message: 'Not authorized to view application' });
         }
 
         const applications = await Application.find({ job: req.params.jobId })
-        .populate("job", "title location category type")
-        .populate("applicant", "name email avatar resume")
+            .populate("job", "title location category type")
+            .populate("applicant", "name email avatar resume")
 
         res.json(applications);
     } catch (error) {
@@ -65,14 +65,14 @@ exports.getApplicantsForJob = async (req, res) => {
 exports.getApplicationById = async (req, res) => {
     try {
         const app = await Application.findById(req.params.id)
-        .populate("job", "title")
-        .populate("applicant", "name email avatar resume");
+            .populate("job", "title")
+            .populate("applicant", "name email avatar resume");
 
         if (!app) return res.status(404).json({ message: 'Application not found', id: req.params.id });
 
-        const isOwner = 
-        app.applicant._id.toString() === req.user._id.toString() ||
-        app.job.company.toString() === req.user._id.toString();
+        const isOwner =
+            app.applicant._id.toString() === req.user._id.toString() ||
+            app.job.company.toString() === req.user._id.toString();
 
         if (!isOwner) {
             return res.status(403).json({ message: 'Not authorized to view this application' });
