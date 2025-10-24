@@ -45,7 +45,17 @@ exports.getMyApplications = async (req, res) => {
 // @desc   Get all applicants for job (Employer only)
 exports.getApplicantsForJob = async (req, res) => {
     try {
+        const job = await Job.findById(req.params.jobId);
+       
+        if  (!job || job.company.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: 'Not authorized to view application' });
+        }
 
+        const applications = await Application.find({ job: req.params.jobId })
+        .populate("job", "title location category type")
+        .populate("applicant", "name email avatar resume")
+
+        res.json(applications);
     } catch (error) {
         res.status(500).json({ message: err.message });
     }
