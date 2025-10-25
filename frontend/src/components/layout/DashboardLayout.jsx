@@ -187,6 +187,17 @@ const DashboardLayout = ({ activeMenu, children }) => {
 
           <div className="flex items-center space-x-3">
             {/* Profile Dropdown */}
+            <ProfileDropdown
+            isOpen={profileDropdownOpen}
+            onToggle={(e) => {
+              e.stopPropagation();
+              setProfileDropdownOpen(!profileDropdownOpen);
+            }}
+            avatar={user?.avatar || ""}
+            companyName={user?.name || ""}
+            email={user?.email || ""}
+            onLogout={logout}
+          />
           </div>
         </header>
 
