@@ -5,15 +5,15 @@ const axiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: 80000,
     headers: {
-        "Content-Type": 'application/json',
-        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
     },
 });
 
 // Request Interceptor to add JWT token to headers
 axiosInstance.interceptors.request.use(
     (config) => {
-        const accessToken = localStorage.getItem('token');
+        const accessToken = localStorage.getItem("token");
         if (accessToken) {
             config.headers.Authorization = `Bearer ${accessToken}`;
         }
@@ -33,8 +33,8 @@ axiosInstance.interceptors.response.use(
         // You can handle specific status codes here
         if (error.response) {
             if (error.response.status === 401) {
-                // Handle unauthorized access, e.g., redirect to login
-                window.location.href = '/';
+                // Redirect to login
+                window.location.href = "/";
             } else if (error.response.status === 500) {
                 // Handle server errors
                 console.error("Server error. Please try again later.");
