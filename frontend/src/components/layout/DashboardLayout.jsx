@@ -60,7 +60,48 @@ const DashboardLayout = ({ activeMenu }) => {
 
   const sidebarCollapsed = isMobile && false;
 
-  return <div>DashboardLayout</div>;
+  return (
+    <div className="">
+      {/* Sidebar */}
+      <div
+        className={`fixed inset-y-0 left-0 z-50 transition-transform duration-300 transform ${
+          isMobile
+            ? sidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full"
+            : "translate-x-0"
+        } ${
+          sidebarCollapsed ? "w-16" : "w-64"
+        } bg-white border-r border-gray-200`}
+      >
+        {/* Company Logo */}
+        <div className="">
+          {!sidebarCollapsed ? (
+            <Link className="" to="/">
+              <div className="">
+                <Briefcase className="" />
+              </div>
+              <span className="">JobPortal</span>
+            </Link>
+          ) : (
+            <div className="">
+              <Building2 className="" />
+            </div>
+          )}
+        </div>
+
+        {/* Navigation Menu */}
+
+        {/* Logout */}
+        <div className="">
+          <button className="" onClick={logout}>
+            <LogOut className="" />
+            {!sidebarCollapsed && <span className="">Logout</span>}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default DashboardLayout;
