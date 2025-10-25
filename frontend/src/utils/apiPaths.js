@@ -5,7 +5,7 @@ export const API_PATHS = {
         REGISTER: "/api/auth/register", // Sign-Up
         LOGIN: "/api/auth/login",       // Authenticate user & return JWT
         GET_PROFILE: "/api/auth/profile", // Get user profile
-        UPDATE_PROFILE: "/api/auth/profile", // Update user profile
+        UPDATE_PROFILE: "/api/user/profile", // Update user profile
         DELETE_RESUME: "/api/user/resume", // Delete user resume
     },
 
@@ -26,13 +26,13 @@ export const API_PATHS = {
 
         SAVE_JOB: (id) => `/api/save-jobs/${id}`, // Save job by ID
         UNSAVE_JOB: (id) => `/api/save-jobs/${id}`, // Unsave job by ID
-        GET_SAVED_JOBS: "/api/save-jobs/my", // Get all saved jobs for the logged-in user
+        GET_SAVED_JOBS: "api/save-jobs/my", // Get all saved jobs for the logged-in user
     },
 
     APPLICATIONS: {
         APPLY_TO_JOB: (id) => `/api/applications/${id}`, // Apply to a job by ID
         GET_ALL_APPLICATIONS: (id) => `/api/applications/job/${id}`, // Get all applications for a specific job
-        UPDATE_STATUS: (id) => `/api/applications/${id}/status`, // Update application status by ID
+        UPDATE_STATUS: (id) => `api/applications/${id}/status`, // Update application status by ID
     },
 
     IMAGE: {
