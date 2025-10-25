@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 // local imports
 import { useAuth } from "../../context/AuthContext";
 import { NAVIGATION_MENU } from "../../utils/data";
+import ProfileDropdown from "./ProfileDropdown";
 
 const NavigationItem = ({ item, isActive, onClick, isCollapsed }) => {
   const Icon = item.icon;
