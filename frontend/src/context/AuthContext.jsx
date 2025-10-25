@@ -1,4 +1,3 @@
-import { log } from 'console';
 import React , { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -38,7 +37,13 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const login = (userData, token) => {};
+    const login = (userData, token) => {
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        setUser(userData);
+        setIsAuthenticated(true);
+    };
 
     const logout = () => {};
 
