@@ -45,7 +45,15 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
     };
 
-    const logout = () => {};
+    const logout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("user");
+
+        setUser(null);
+        setIsAuthenticated(false);
+        window.location.href = "/";
+    };
 
     const updateUser = (updatedUserData) => {};
 
