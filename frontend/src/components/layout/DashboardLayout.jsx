@@ -95,7 +95,7 @@ const DashboardLayout = ({ activeMenu }) => {
         {/* Logout */}
         <div className="absolute bottom-4 left-4 right-4">
           <button 
-          className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200" 
+          className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 cursor-pointer" 
           onClick={logout}
           >
             <LogOut className="h-5 w-5 flex-shrink-0 text-gray-500" />
