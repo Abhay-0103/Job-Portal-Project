@@ -13,8 +13,12 @@ import {
 
 // Local Imports
 import { validateEmail } from "../../utils/helper";
+import { useAuth } from "../../context/AuthContext";
+import { API_PATHS } from "../../utils/apiPaths";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Login = () => {
+  const {login} = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -95,7 +99,7 @@ const Login = () => {
       const { token, role } = response.data;
 
       if (token) {
-        Login(response.data, token);
+        login(response.data, token);
 
         // Redirect based on role 
         setTimeout(() => {
