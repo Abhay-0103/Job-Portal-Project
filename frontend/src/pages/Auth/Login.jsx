@@ -111,12 +111,14 @@ const Login = () => {
       }
 
 // redirect based on user role
+{/*
 setTimeout(() => {
-  const redirectPath = User === "employer"
+  const redirectPath = User.role === "employer"
     ? "/employer-dashboard"
     : "/find-jobs";
     window.location.href = redirectPath;
 }, 1500);
+*/}
 
     } catch (error) {
       setFormState((prev) => ({
