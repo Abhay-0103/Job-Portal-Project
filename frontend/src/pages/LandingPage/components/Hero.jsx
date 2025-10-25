@@ -1,12 +1,14 @@
+// global Imports
 import React from "react";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Users, Building2, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const Hero = () => {
-  const isAuthenticated = true;
-  const User = { FullName: "Alex", role: "employer" };
+// Local Imports
+import { useAuth } from "../../../context/AuthContext";
 
+const Hero = () => {
+  const {user, isAuthenticated} = useAuth();
   const navigate = useNavigate();
 
   const stats = [
