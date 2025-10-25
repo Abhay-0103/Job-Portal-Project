@@ -7,6 +7,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { NAVIGATION_MENU } from "../../utils/data";
 
+const NavigationItem = ({ item, isActive, onClick, isCollapsed}) => {
+    const Icon = item.icon
+
+    return <button
+    onClick={() => onClick(item.id)}
+    className={`w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group ${
+        isActive
+        ? "bg-blue-50 text-blue-700 shadow-sm shadow-blue-50"
+        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+    }`}
+    >
+        <Icon
+        className={`h-5 w-5 flex-shrink-0 ${
+            isActive ? "text-blue-600" : "text-gray-500"
+        }`}
+        />
+        {!isCollapsed && <span className="ml-3 truncate">{item.name}</span>}
+    </button>
+};
 const DashboardLayout = ({ activeMenu }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -91,7 +110,17 @@ const DashboardLayout = ({ activeMenu }) => {
         </div>
 
         {/* Navigation Menu */}
-
+          <nav className="p-4 space-y-2">
+            {NAVIGATION_MENU.map((item) => (
+                <NavigationItem
+                    key={item.id}
+                    item={item}
+                    isActive={activeNavItem === item.id}
+                    onClick={handleNavigation}
+                    isCollapsed={sidebarCollapsed}
+                />
+            ))}
+          </nav>
         {/* Logout */}
         <div className="absolute bottom-4 left-4 right-4">
           <button 
