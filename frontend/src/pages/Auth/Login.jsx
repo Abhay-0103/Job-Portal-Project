@@ -8,6 +8,7 @@ import {
   Loader,
   AlertCircle,
   CheckCircle,
+  User,
 } from "lucide-react";
 
 // Local Imports
@@ -78,6 +79,41 @@ const Login = () => {
 
     try {
       // Login API integration
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email: formData.email,
+        password: formData.password,
+        rememberMe: formData.rememnerMe,
+      });
+
+      setFormState(prev => ({
+        ...prev,
+        loading: false,
+        success: true,
+        error: {},
+      }));
+      
+      const { token, role } = response.data;
+
+      if (token) {
+        Login(response.data, token);
+
+        // Redirect based on role 
+        setTimeout(() => {
+          window.location.href =
+            role === "employer"
+             ? "/employer/dashboard" 
+             : "/find-jobs";
+        }, 2000);
+      }
+
+// redirect based on user role
+setTimeout(() => {
+  const redirectPath = User === "employer"
+    ? "/employer/dashboard"
+    : "/find-jobs";
+    window.location.href = redirectPath;
+}, 1500);
+
     } catch (error) {
       setFormState((prev) => ({
         ...prev,
