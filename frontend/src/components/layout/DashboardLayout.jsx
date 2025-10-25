@@ -61,7 +61,7 @@ const DashboardLayout = ({ activeMenu }) => {
   const sidebarCollapsed = isMobile && false;
 
   return (
-    <div className="">
+    <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 z-50 transition-transform duration-300 transform ${
@@ -75,17 +75,17 @@ const DashboardLayout = ({ activeMenu }) => {
         } bg-white border-r border-gray-200`}
       >
         {/* Company Logo */}
-        <div className="">
+        <div className="flex items-center h-16 border-b border-gray-200 pl-6">
           {!sidebarCollapsed ? (
-            <Link className="" to="/">
-              <div className="">
-                <Briefcase className="" />
+            <Link className="flex items-center space-x-3" to="/">
+              <div className="h-8 w-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <Briefcase className="h-5 w-5 text-white" />
               </div>
-              <span className="">JobPortal</span>
+              <span className="text-gray-900 font-bold text-xl">JobPortal</span>
             </Link>
           ) : (
-            <div className="">
-              <Building2 className="" />
+            <div className="h-8 w-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center">
+              <Building2 className="h-5 w-5 text-white" />
             </div>
           )}
         </div>
@@ -93,10 +93,13 @@ const DashboardLayout = ({ activeMenu }) => {
         {/* Navigation Menu */}
 
         {/* Logout */}
-        <div className="">
-          <button className="" onClick={logout}>
-            <LogOut className="" />
-            {!sidebarCollapsed && <span className="">Logout</span>}
+        <div className="absolute bottom-4 left-4 right-4">
+          <button 
+          className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200" 
+          onClick={logout}
+          >
+            <LogOut className="h-5 w-5 flex-shrink-0 text-gray-500" />
+            {!sidebarCollapsed && <span className="ml-3">Logout</span>}
           </button>
         </div>
       </div>
