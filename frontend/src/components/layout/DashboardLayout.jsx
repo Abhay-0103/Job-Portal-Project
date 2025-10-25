@@ -35,6 +35,15 @@ const DashboardLayout = ({ activeMenu }) => {
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  {/*
+  // Sync activeNavItem with activeMenu prop
+  useEffect(() => {
+    if (activeMenu) {
+      setActiveNavItem(activeMenu);
+    }
+  }, [activeMenu]);
+    */}
+
   // Handle responsuve behavior
   useEffect(() => {
     const handleResize = () => {
