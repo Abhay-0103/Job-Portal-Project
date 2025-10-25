@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
             resume: user.resume || '',
         });
 
-    } catch (error) {
+    } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
