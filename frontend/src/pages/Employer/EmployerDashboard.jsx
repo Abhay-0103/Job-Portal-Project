@@ -171,11 +171,11 @@ const EmployerDashboard = () => {
               subtitle="Latest applications from candidates"
               headerAction={
                 <button
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-                onClick={() => navigate("/manage-jobs")}
-              >
-                View All
-              </button>
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  onClick={() => navigate("/manage-jobs")}
+                >
+                  View All
+                </button>
               }
             >
               <div className="space-y-3">
@@ -183,7 +183,7 @@ const EmployerDashboard = () => {
                   ?.slice(0, 3)
                   ?.map((data, index) => (
                     <ApplicantDashboardCard
-                     key={index}
+                      key={index}
                       applicant={data?.applicant || ""}
                       position={data?.job?.title || ""}
                       time={moment(data?.updatedAt).fromNow()}
@@ -191,7 +191,6 @@ const EmployerDashboard = () => {
                   ))}
               </div>
             </Card>
-
           </div>
         </div>
       )}
