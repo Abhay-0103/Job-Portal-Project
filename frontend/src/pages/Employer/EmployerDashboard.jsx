@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/layout/DashboardLayout";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const EmployerDashboard = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const EmployerDashboard = () => {
   }, []);
 
   return <DashboardLayout activeMenu="employer-dashboard">
-    {isLoading ? <LoadingSpinner /> :
+    {!isLoading ? <LoadingSpinner /> :
     <div className="max-w-7xl mx-auto space-y-8"></div>
     }
   </DashboardLayout>
