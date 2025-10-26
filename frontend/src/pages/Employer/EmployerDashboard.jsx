@@ -17,6 +17,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import JobDashboardCard from "../../components/Cards/JobDashboardCard";
+import ApplicantDashboardCard from "../../components/Cards/ApplicantDashboardCard";
 
 const Card = ({ title, headerAction, subtitle, className, children }) => {
   return (
@@ -164,6 +165,33 @@ const EmployerDashboard = () => {
                   ))}
               </div>
             </Card>
+
+            <Card
+              title="Recent Applications"
+              subtitle="Latest applications from candidates"
+              headerAction={
+                <button
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                onClick={() => navigate("/manage-jobs")}
+              >
+                View All
+              </button>
+              }
+            >
+              <div className="space-y-3">
+                {dashboardData?.data?.recentApplications
+                  ?.slice(0, 3)
+                  ?.map((data, index) => (
+                    <ApplicantDashboardCard
+                     key={index}
+                      applicant={data?.applicant || ""}
+                      position={data?.job?.title || ""}
+                      time={moment(data?.updatedAt).fromNow()}
+                    />
+                  ))}
+              </div>
+            </Card>
+
           </div>
         </div>
       )}
