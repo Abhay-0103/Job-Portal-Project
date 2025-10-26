@@ -17,11 +17,24 @@ import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
-const Card =({ className, children}) => {
+const Card =({title, headerAction, subtitle, className, children}) => {
   return <div
   className={`bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
   >
-    <div className={ "p-6"}>{children}</div>
+    {(title || headerAction) && (
+      <div className="flex items-center justify-between p-6 pb-4">
+        <div>
+          {title && (
+            <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          )}
+          {subtitle && (
+            <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
+          )}
+        </div>
+        {headerAction}
+      </div>
+    )}
+    <div className={title ? "px-6 pb-6" : "p-6"}>{children}</div>
   </div>;
 }
 
@@ -93,7 +106,7 @@ const EmployerDashboard = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8 mb-96">
           {/* Dashboard Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <StatCard
@@ -125,6 +138,8 @@ const EmployerDashboard = () => {
               color="purple"
             />
           </div>
+
+
         </div>
       )}
     </DashboardLayout>
