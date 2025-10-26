@@ -41,7 +41,11 @@ const EmployerDashboard = () => {
     return () => {};
   }, []);
 
-  return <DashboardLayout activeMenu="employer-dashboard"></DashboardLayout>;
+  return <DashboardLayout activeMenu="employer-dashboard">
+    {isLoading ? <LoadingSpinner /> :
+    <div className="max-w-7xl mx-auto space-y-8"></div>
+    }
+  </DashboardLayout>
 };
 
 export default EmployerDashboard;
