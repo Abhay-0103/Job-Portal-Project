@@ -42,11 +42,27 @@ const EmployerDashboard = () => {
     return () => {};
   }, []);
 
-  return <DashboardLayout activeMenu="employer-dashboard">
-    {!isLoading ? <LoadingSpinner /> :
-    <div className="max-w-7xl mx-auto space-y-8"></div>
-    }
+  return (
+  <DashboardLayout activeMenu="employer-dashboard">
+    {isLoading ? (
+      <LoadingSpinner /> 
+     ) : (
+    <div className="max-w-7xl mx-auto space-y-8">
+      {/* Dashboard Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StatCard 
+        title="Active Jobs"
+        value={dashboardData?.counts?.totalActiveJobs || 0}
+        icon={Briefcase}
+        trend={true}
+        trendValue={`${dashboardData?.counts?.trends?.activeJobs || 0}%`}
+        color="blue"
+        />
+        </div>
+    </div>
+    )}
   </DashboardLayout>
+  );
 };
 
 export default EmployerDashboard;
