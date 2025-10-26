@@ -139,7 +139,29 @@ const EmployerDashboard = () => {
             />
           </div>
 
-
+          {/* Recent Activities */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card
+            title="Recent Job Posts"
+            subtitle="Your latest job postings"
+            headerAction={
+              <button
+              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              onClick={() => navigate("/manage-jobs")}
+            >
+              View All Jobs
+            </button>
+            }
+            >
+              <div className="space-y-3">
+                {dashboardData?.data?.recentJobs
+                ?.slice(0, 3)
+                ?.map((job, index) => (
+                  <JobDashboardCard key={index} job={job} />
+                ))}
+                </div>
+            </Card>
+            </div>
         </div>
       )}
     </DashboardLayout>
