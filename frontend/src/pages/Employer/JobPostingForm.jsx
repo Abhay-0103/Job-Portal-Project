@@ -20,6 +20,7 @@ import { CATEGORIES, JOB_TYPES } from "../../utils/data";
 import axiosInstance from "../../utils/axiosInstance";
 import InputField from "../../components/Input/InputField";
 import SelectField from "../../components/Input/SelectField";
+import TextareaField from "../../components/Input/TextareaField";
 
 const JobPostingForm = () => {
   const navigate = useNavigate();
@@ -158,6 +159,34 @@ const JobPostingForm = () => {
                   icon={Briefcase}
                 />
                 </div>
+
+              {/* Job Description */}
+              <TextareaField
+                label="Job Description"
+                id="description"
+                placeholder="Provide a detailed description of the job role..."
+                value={formData.description}
+                onChange={(e) =>
+                  handleInputChange("description", e.target.value)
+                }
+                error={errors.description}
+                helperText="Include responsibilities, team structure, and growth opportunities."
+                required
+              />
+
+              {/* Job Requirements */}
+              <TextareaField
+                label="Job Requirements"
+                id="requirements"
+                placeholder="List the required skills and qualifications..."
+                value={formData.requirements}
+                onChange={(e) =>
+                  handleInputChange("requirements", e.target.value)
+                }
+                error={errors.requirements}
+                helperText="Mention necessary experience, education, and skills."
+                required
+              />
             </div>
           </div>
         </div>
