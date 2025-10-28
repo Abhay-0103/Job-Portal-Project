@@ -19,6 +19,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { CATEGORIES, JOB_TYPES } from "../../utils/data";
 import axiosInstance from "../../utils/axiosInstance";
 import InputField from "../../components/Input/InputField";
+import SelectField from "../../components/Input/SelectField";
 
 const JobPostingForm = () => {
   const navigate = useNavigate();
@@ -128,6 +129,35 @@ const JobPostingForm = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Category & Job Type */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <SelectField
+                  label="Category"
+                  id="category"
+                  value={formData.category}
+                  onChange={(e) =>
+                    handleInputChange("category", e.target.value)
+                  }
+                  options={CATEGORIES}
+                  placeholder="Select a category"
+                  error={errors.category}
+                  required
+                  icon={Users}
+                />
+              
+                <SelectField
+                  label="Job Type"
+                  id="jobType"
+                  value={formData.jobType}
+                  onChange={(e) => handleInputChange("jobType", e.target.value)}
+                  options={JOB_TYPES}
+                  placeholder="Select job type"
+                  error={errors.jobType}
+                  required
+                  icon={Briefcase}
+                />
+                </div>
             </div>
           </div>
         </div>
