@@ -59,6 +59,61 @@ const JobPostingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const jobPayload = {
+      title: formData.jobTitle,
+      description: formData.description,
+      requirements: formData.requirements,
+      location: formData.location,
+      category: formData.category,
+      jobType: formData.jobType,
+      salaryMin: formData.salaryMin,
+      salaryMax: formData.salaryMax,
+    };
+
+    try {
+      const response = jobId
+      ? await axiosInstance.put(API_PATHS.JOBS.UPDATE_JOB(jobId), jobPayload)
+      : await axiosInstance.post(API_PATHS.JOBS.POST_JOB, jobPayload);
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success(
+          jobId ? "Job Updated Successfully!" : "Job Posted Successfully!"
+        );
+        setFormData({
+          jobTitle: "",
+          location: "",
+          category: "",
+          jobType: "",
+          description: "",
+          requirements: "",
+          salaryMin: "",
+          salaryMax: "",
+        });
+        navigate("/employer-dashboard");
+      return;
+      }
+
+      console.error("Unexpected response:", response);
+      toast.error("Something went wrong. Please try again.");
+    } catch (error) {
+      if (error.response?.data?.message) {
+        console.error("API Error:", error.response.data);
+        toast.error(error.response.data.message);
+      } else {
+        console.error("Unexpected error:", error);
+        toast.error("Failed to post/update job. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Form validation helper
