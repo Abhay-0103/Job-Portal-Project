@@ -18,6 +18,7 @@ import DashboardLayout from "../../components/layout/DashboardLayout";
 import { API_PATHS } from "../../utils/apiPaths";
 import { CATEGORIES, JOB_TYPES } from "../../utils/data";
 import axiosInstance from "../../utils/axiosInstance";
+import InputField from "../../components/Input/InputField";
 
 const JobPostingForm = () => {
   const navigate = useNavigate();
@@ -39,7 +40,20 @@ const JobPostingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
 
-  const handleInputChange = (field, value) => {};
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: "",
+      }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,7 +97,19 @@ const JobPostingForm = () => {
               </div>
             </div>
 
-            <div className="space-y-6"></div>
+            <div className="space-y-6">
+              {/* Job Title */}
+              <InputField
+                label="Job Title"
+                id="jobTitle"
+                placeholder="e.g., Senior Software Engineer"
+                value={formData.jobTitle}
+                onChange={(e) => handleInputChange("jobTitle", e.target.value)}
+                error={errors.jobTitle}
+                required
+                icon={Briefcase}
+              />
+            </div>
           </div>
         </div>
       </div>
