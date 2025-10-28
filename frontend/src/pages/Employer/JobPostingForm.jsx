@@ -65,6 +65,32 @@ const JobPostingForm = () => {
   const validateForm = (formData) => {
     const errors = {};
 
+    if (!formData.jobTitle.trim()) {
+      errors.jobTitle = "Job title is required.";
+    }
+
+    if (!formData.category) {
+      errors.category = "Please select a Category.";
+    }
+
+    if (!formData.jobType) {
+      errors.jobType = "Please select a Job Type.";
+    }
+
+    if (!formData.description.trim()) {
+      errors.description = "Job description is required.";
+    }
+
+    if (!formData.requirements.trim()) {
+      errors.requirements = "Job requirements are required.";
+    }
+
+    if (!formData.salaryMin || !formData.salaryMax) {
+      errors.salary = "Both minimum and maximum salary are required.";
+    } else if (parseInt(formData.salaryMin) >= parseInt(formData.salaryMax)) {
+      errors.salary = "Minimum salary must be greater than maximum salary.";
+    }
+
     return errors;
   };
 
