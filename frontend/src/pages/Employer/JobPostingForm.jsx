@@ -146,7 +146,7 @@ const JobPostingForm = () => {
                   required
                   icon={Users}
                 />
-              
+
                 <SelectField
                   label="Job Type"
                   id="jobType"
@@ -158,7 +158,7 @@ const JobPostingForm = () => {
                   required
                   icon={Briefcase}
                 />
-                </div>
+              </div>
 
               {/* Job Description */}
               <TextareaField
@@ -187,6 +187,70 @@ const JobPostingForm = () => {
                 helperText="Mention necessary experience, education, and skills."
                 required
               />
+
+              {/* Salary Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Salary Range <span className="text-red-500">*</span>
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                      <DollarSign className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      type="number"
+                      placeholder="Min"
+                      value={formData.salaryMin}
+                      onChange={(e) =>
+                        handleInputChange("salaryMin", e.target.value)
+                      }
+                      className="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 focus:border-blue-500 transition-colors duration-200"
+                    />
+                  </div>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                      <DollarSign className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      type="number"
+                      placeholder="Max"
+                      value={formData.salaryMax}
+                      onChange={(e) =>
+                        handleInputChange("salaryMax", e.target.value)
+                      }
+                      className="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 focus:border-blue-500 transition-colors duration-200"
+                    />
+                  </div>
+                </div>
+                {errors.salaryRange && (
+                  <div className="flex items-center space-x-1 text-sm text-red-600">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>{errors.salary}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-2">
+                <button
+                  onClick={handleSubmit}
+                  disabled={isSubmitting || !isFormValid()}
+                  className="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed outline-none transition-colors duration-200"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Publishing Job...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5 mr-2" />
+                      Publish Job
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
