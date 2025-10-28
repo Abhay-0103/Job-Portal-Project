@@ -109,6 +109,25 @@ const JobPostingForm = () => {
                 required
                 icon={Briefcase}
               />
+
+              {/* Location & Remote Option */}
+              <div className="space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-end sm:space-x-4 space-y-4 sm:space-y-0">
+                  <div className="flex-1">
+                    <InputField
+                      label="Location"
+                      id="location"
+                      placeholder="e.g., New York, NY"
+                      value={formData.location}
+                      onChange={(e) =>
+                        handleInputChange("location", e.target.value)
+                      }
+                      error={errors.location}
+                      icon={MapPin}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
