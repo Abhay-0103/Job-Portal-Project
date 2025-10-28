@@ -21,6 +21,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import InputField from "../../components/Input/InputField";
 import SelectField from "../../components/Input/SelectField";
 import TextareaField from "../../components/Input/TextareaField";
+import JobPostingPreview from "../../components/Cards/JobPostingPreview";
 
 const JobPostingForm = () => {
   const navigate = useNavigate();
@@ -153,6 +154,14 @@ const JobPostingForm = () => {
     const validationErrors = validateForm(formData);
     return Object.keys(validationErrors).length === 0;
   };
+
+  if (isPreview) {
+    return (
+      <DashboardLayout activeMenu="post-job">
+        <JobPostingPreview formData={formData} setIsPreview={setIsPreview} />
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout activeMenu="post-job">
