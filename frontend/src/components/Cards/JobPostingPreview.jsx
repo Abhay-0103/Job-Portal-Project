@@ -25,10 +25,12 @@ const JobPostingPreview = ({ formData, setIsPreview }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <h2 className="text-lg md:text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-                Job Preview</h2>
+                Job Preview
+              </h2>
             </div>
-            <button onClick={() => setIsPreview(false)} 
-            className="group flex items-center space-x-2 px-6 py-3 text-xs md:text-sm font-medium text-gray-600 hover:text-white bg-white/50 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 border border-gray-200 hover:border-transparent rounded-xl transition-all duration-300 shadow-lg shadow-gray-100 hover:shadow-xl transform hover:-translate-y-0.5"
+            <button
+              onClick={() => setIsPreview(false)}
+              className="group flex items-center space-x-2 px-6 py-3 text-xs md:text-sm font-medium text-gray-600 hover:text-white bg-white/50 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 border border-gray-200 hover:border-transparent rounded-xl transition-all duration-300 shadow-lg shadow-gray-100 hover:shadow-xl transform hover:-translate-y-0.5"
             >
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
               <span className="">Back to Edit</span>
@@ -43,8 +45,8 @@ const JobPostingPreview = ({ formData, setIsPreview }) => {
                 <div className="flex items-center justify-between mb-0">
                   <div className="flex-1">
                     <h1 className="text-lg lg:text-xl font-semibold mb-2 leading-tight text-gray-900">
-                        {formData.jobTitle}
-                        </h1>
+                      {formData.jobTitle}
+                    </h1>
 
                     <div className="flex items-center space-x-4 text-green-600">
                       <div className="flex items-center space-x-2">
@@ -53,9 +55,9 @@ const JobPostingPreview = ({ formData, setIsPreview }) => {
                           {formData.isRemote ? "Remote" : formData.location}
                         </span>
                         {formData.isRemote && formData.location && (
-                          <span className="text-sm text-gray-500"> 
-                          {" "} 
-                          . {formData.location}
+                          <span className="text-sm text-gray-500">
+                            {" "}
+                            . {formData.location}
                           </span>
                         )}
                       </div>
@@ -93,9 +95,6 @@ const JobPostingPreview = ({ formData, setIsPreview }) => {
                 </div>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
