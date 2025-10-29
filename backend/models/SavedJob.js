@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const savedJobSchema = new mongoose.Schema(
     {
-        jobseeker: {
+        jobSeeker: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
