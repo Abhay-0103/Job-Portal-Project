@@ -95,6 +95,52 @@ const JobPostingPreview = ({ formData, setIsPreview }) => {
                 </div>
               </div>
             </div>
+
+            {/* Content Section */}
+            <div className="px-0 pb-8 space-y-8">
+              {/* Salary Section */}
+              <div className="relative overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 p-6 rounded-2xl ">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-full -translate-y-16 translate-x-16"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl">
+                        < DollarSign className="h-4 md:h-6 w-4 md:w-6 text-white" />
+                        </div>
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                          Compensation
+                        </h3>
+                        <div className="text-sm md:text-lg font-bold text-gray-900">
+                          {
+                            currencies.find(
+                              (c) => c.value === formData.currency
+                            )?.label
+                          }
+                          {formData.salaryMin.toLocaleString()} -{" "}
+                          {
+                            currencies.find(
+                              (c) => c.value === formData.currency
+                            )?.label
+                          }
+                          {formData.salaryMax.toLocaleString()}
+                          <span className="text-sm md:text-lg text-gray-600 font-normal ml-1">
+                            Per Year
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="hidden md:flex items-center space-x-2 text-sm text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
+                      <Users className="h-4 w-4" />
+                      <span>Competitive Salary</span>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+
+
+
+              </div>
           </div>
         </div>
       </div>
