@@ -51,8 +51,8 @@ exports.deleteResume = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        if (user.role !== "jobseeker") {
-            return res.status(403).json({ message: 'Only jobseekers can delete resumes' });
+        if (user.role !== "jobSeeker") {
+            return res.status(403).json({ message: 'Only jobSeekers can delete resumes' });
         }
 
         // construct file path
