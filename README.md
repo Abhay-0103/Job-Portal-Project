@@ -4,7 +4,6 @@
 
 ### A Modern Full-Stack Job Management Platform
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-v14+-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19.1-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-7.1-646CFF.svg)](https://vitejs.dev/)
@@ -715,24 +714,6 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 
 ---
 
-## 📸 Screenshots
-
-### Landing Page
-![Landing Page](https://via.placeholder.com/800x400?text=Landing+Page)
-
-### Job Seeker Dashboard
-![Job Seeker Dashboard](https://via.placeholder.com/800x400?text=Job+Seeker+Dashboard)
-
-### Employer Dashboard
-![Employer Dashboard](https://via.placeholder.com/800x400?text=Employer+Dashboard)
-
-### Job Details
-![Job Details](https://via.placeholder.com/800x400?text=Job+Details+Page)
-
-> **Note**: Replace placeholder images with actual screenshots of your application
-
----
-
 ## 🎯 Future Enhancements
 
 - [ ] Real-time chat between employers and job seekers
@@ -819,22 +800,6 @@ Examples:
 
 ---
 
-## 📝 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2025 Abhay Singh
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction...
-```
-
----
-
 ## 👨‍💻 Author
 
 <div align="center">
@@ -842,8 +807,8 @@ in the Software without restriction...
 ### Abhay Singh
 
 [![GitHub](https://img.shields.io/badge/GitHub-@Abhay--0103-181717?style=for-the-badge&logo=github)](https://github.com/Abhay-0103)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail)](mailto:your.email@example.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/abhay-singh-16a492329)
+[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail)](ab0321054@gmail.com)
 
 **Repository:** [BTI-College-Project](https://github.com/Abhay-0103/BTI-College-Project)
 
@@ -878,7 +843,7 @@ in the Software without restriction...
 
 If you have any questions or need help with the project:
 
-- 📧 **Email**: [your.email@example.com](mailto:your.email@example.com)
+- 📧 **Email**: [your.email@example.com](ab0321054@gmail.com)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/Abhay-0103/BTI-College-Project/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/Abhay-0103/BTI-College-Project/discussions)
 
