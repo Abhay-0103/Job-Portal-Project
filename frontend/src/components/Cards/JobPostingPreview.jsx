@@ -138,8 +138,21 @@ const JobPostingPreview = ({ formData, setIsPreview }) => {
                   </div>
               </div>
 
+              {/* Job Description */}
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-gray-900 flex items-center space-x-3">
+                  <div className="w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full"></div>
+                  <span className="text-base md:text-lg">About This Role</span>
+                </h3>
+                <div className="bg-gray-50 border border-gray-100 rounded-xl p-6">
+                  <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
+                    {formData.description}
+                  </div>
+                  </div>
+                  </div>
 
-
+                  {/* Requirements Section */}
+                  
               </div>
           </div>
         </div>
