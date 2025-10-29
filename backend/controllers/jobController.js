@@ -64,7 +64,7 @@ exports.getJobs = async (req, res) => {
 
         if (userId) {
             // Get saved jobs for the user
-            const savedJobs = await SavedJob.find({ jobseeker: userId }).select('job');
+            const savedJobs = await SavedJob.find({ jobSeeker: userId }).select('job');
             SavedJobIds = savedJobs.map((s) => String(s.job));
 
             // Applications
