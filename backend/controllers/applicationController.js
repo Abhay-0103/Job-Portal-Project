@@ -4,8 +4,8 @@ const Job = require("../models/Job");
 // @desc   Apply for a job
 exports.applyToJob = async (req, res) => {
     try {
-        if (req.user.role !== 'jobseeker') {
-            return res.status(403).json({ message: 'Only jobseekers can apply for jobs' });
+        if (req.user.role !== 'jobSeeker') {
+            return res.status(403).json({ message: 'Only jobSeekers can apply for jobs' });
         }
 
         const existing = await Application.findOne({
@@ -61,7 +61,7 @@ exports.getApplicantsForJob = async (req, res) => {
     }
 };
 
-// @desc   Get application by ID (Jobseeker or Employer)
+// @desc   Get application by ID (JobSeeker or Employer)
 exports.getApplicationById = async (req, res) => {
     try {
         const app = await Application.findById(req.params.id)
