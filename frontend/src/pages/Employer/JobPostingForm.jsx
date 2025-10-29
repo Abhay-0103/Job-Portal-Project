@@ -74,7 +74,7 @@ const JobPostingForm = () => {
       requirements: formData.requirements,
       location: formData.location,
       category: formData.category,
-      jobType: formData.jobType,
+      type: formData.jobType,
       salaryMin: formData.salaryMin,
       salaryMax: formData.salaryMax,
     };
