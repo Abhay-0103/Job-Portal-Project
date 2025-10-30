@@ -61,7 +61,11 @@ const ManageJobs = () => {
   const SortIcon = ({ field }) => {};
 
   // Loading state with animation
-  const LoadingRow = () => <></>;
+  const LoadingRow = () => (
+    <tr className="">
+      <td className="">
+        <div className="">
+  )
 
   const getPostedJobs = async (disableLoader) => {
     setIsLoading(!disableLoader);
