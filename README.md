@@ -843,7 +843,7 @@ Examples:
 
 If you have any questions or need help with the project:
 
-- 📧 **Email**: [your.email@example.com](ab0321054@gmail.com)
+- 📧 **Email**: [Abhay Singh](ab0321054@gmail.com)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/Abhay-0103/BTI-College-Project/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/Abhay-0103/BTI-College-Project/discussions)
 
