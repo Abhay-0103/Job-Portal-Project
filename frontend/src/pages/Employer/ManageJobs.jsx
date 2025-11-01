@@ -36,7 +36,32 @@ const ManageJobs = () => {
 
   // Filter and sort jobs
   const filteredAndSortedJobs = useMemo(() => {
-    let filtered = [];
+    let filtered = jobs.filter((job) => {
+      const matchesSearch =
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.company.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesStatus =
+        statusFilter === "All" || job.status === statusFilter;
+      return matchesSearch && matchesStatus;
+    });
+
+    // sort jobs
+    filtered.sort((a, b) => {
+      let aValue = a[sortField];
+      let bValue = b[sortField];
+
+      if (sortField === "applicants") {
+        aValue = Number(aValue);
+        bValue = Number(bValue);
+      }
+
+      if (sortDirection === "asc") {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    });
+
 
     return filtered;
   }, [jobs, searchTerm, statusFilter, sortField, sortDirection]);
