@@ -154,25 +154,25 @@ const ApplicationViewer = () => {
                     </div>
 
                     {/* Applications List */}
-                    <div className=''>
-                      <div className=''>
+                    <div className='p-6 '>
+                      <div className='space-y-4'>
                         {applications.map((application) => (
                           <div
                             key={application._id}
-                            className=''
+                            className='flex flex-col md:flex-row md:items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
                           >
-                            <div className=''>
+                            <div className='flex items-center gap-4'>
                               {/* Avatar */}
-                              <div className=''>
+                              <div className='flex-shrink-0'>
                                 {application.applicant.avatar ? (
                                   <img
                                     src={application.applicant.avatar}
                                     alt={application.applicant.name}
-                                    className=''
+                                    className='h-12 w-12 rounded-full object-cover'
                                   />
                                 ) : (
-                                  <div className=''>
-                                    <span className=''>
+                                  <div className='h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center'>
+                                    <span className='text-blue-600 font-semibold'>
                                       {getInitials(application.applicant.name)}
                                     </span>
                                   </div>
@@ -180,15 +180,15 @@ const ApplicationViewer = () => {
                               </div>
 
                               {/* Applicant Info */}
-                              <div className=''>
-                                <h3 className=''>
+                              <div className='min-w-0 flex-1'>
+                                <h3 className='font-semibold text-gray-900'>
                                   {application.applicant.name}
                                 </h3>
-                                <p className=''>
+                                <p className='text-gray-600 text-sm'>
                                   {application.applicant.email}
                                 </p>
-                                <div className=''>
-                                  <Calendar className='' />
+                                <div className='flex items-center gap-1 mt-1 text-gray-500 text-xs'>
+                                  <Calendar className='h-3 w-3' />
                                   <span>
                                     Applied{" "}
                                     {moment(application.createdAt)?.format(
@@ -200,7 +200,7 @@ const ApplicationViewer = () => {
                                  </div>
 
                               {/* Actions */}
-                              <div className=''>
+                              <div className='flex items-center gap-3 mt-1 md:m-0'>
                                 {/* <StatusBadge status={application.status} /> */}
                                 <button
                                   onClick={() =>
@@ -208,9 +208,10 @@ const ApplicationViewer = () => {
                                       application.applicant.resume
                                     )
                                   }
-                                  className=''
+                                  className='inline-flex items-center gap-2 px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg
+                                  hover:bg-blue-700 transition-colors cursor-pointer'
                                 >
-                                  <Download className='' />
+                                  <Download className='h-4 w-4' />
                                   Resume
                                 </button>
 
@@ -218,9 +219,9 @@ const ApplicationViewer = () => {
                                   onClick={() =>
                                     setSelectedApplicant(application)
                                   }
-                                  className=''
+                                  className='inline-flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors cursor-pointer'
                                 >
-                                  <Eye className='' />
+                                  <Eye className='h-4 w-4' />
                                   View Profile
                                 </button>
                               </div>
