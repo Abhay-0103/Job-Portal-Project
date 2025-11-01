@@ -62,9 +62,31 @@ const ManageJobs = () => {
 
   // Loading state with animation
   const LoadingRow = () => (
-    <tr className="">
-      <td className="">
-        <div className="">
+    <tr className="animate-pulse">
+      <td className="px-6 py-4">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+          <div className="space-y-2">
+            <div className="h-4 bg-gray-200 rounded w-32"></div>
+            <div className="h-3 bg-gray-200 rounded w-24"></div>
+          </div>
+        </div>
+        </td>
+        <td className="px-6 py-4">
+          <div className="h-6  bg-gray-200 rounded-full w-16"></div>
+        </td>
+        <td className="px-6 py-4">
+          <div className="h-4 bg-gray-200 rounded-full w-16"></div>
+        </td>
+        <td className="px-6 py-4">
+          <div className="flex space-x-2">
+            <div className="h-8 bg-gray-200 rounded w-16"></div>
+            <div className="h-8 bg-gray-200 rounded w-16"></div>
+            <div className="h-8 bg-gray-200 rounded w-16"></div>
+          </div>
+        </td>
+        </tr>
+        
   )
 
   const getPostedJobs = async (disableLoader) => {
@@ -97,6 +119,7 @@ const ManageJobs = () => {
     } finally {
       setIsLoading(false);
     }
+  };
 
     useEffect(() => {
       getPostedJobs();
@@ -104,10 +127,37 @@ const ManageJobs = () => {
     }, []);
 
     return (
-    <DashboardLayout>ManageJobs</DashboardLayout>
+    <DashboardLayout>
+      <div className="min-h-screen p-4 sm:p-6 lg:p-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex flex-row items-center justify-between">
+              <div className="mb-4 sm:mb-0">
+                <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
+                  Job Management
+                  </h1>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Manage your job posting and track applications
+                  </p>
+              </div>
+
+              <button
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap"
+              onClick={() => navigate("/post-job")}
+              >
+                <Plus className="w-5 h-5 mr-2"/>
+                Add New Job
+              </button>
+            </div>
+          </div>
+
+
+          </div>
+        </div>
+    </DashboardLayout>
     )
   };
-}
 
 
 export default ManageJobs;
