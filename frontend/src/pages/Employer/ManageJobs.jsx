@@ -192,6 +192,72 @@ const ManageJobs = () => {
               </p>
             </div>
 
+
+            {/* Table */}
+            <div className="">
+              {filteredAndSortedJobs.length === 0 && !isLoading ? (
+                <div className="">
+                  <div className="">
+                    <Search className="" />
+                    </div>
+                    <h3 className="">
+                      No jobs found
+                    </h3>
+                    <p className="">
+                      Try adjusting your search or filter to find what you're looking for.
+                    </p>
+                  </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="">
+                    <thead className="">
+                      <tr>
+                        <th
+                          className=""
+                          onClick={() => handleSort("title")}
+                        >
+                          <div className="">
+                            <span>Job Title</span>
+                            <SortIcon field="title" />
+                            </div>
+                            </th>
+                            <th
+                            className=""
+                            onClick={() => handleSort("status")}
+                            >
+                              <div className="">
+                                <span>Status</span>
+                                <SortIcon field="status" />
+                                </div>
+                                </th>
+                                <th
+                                className=""
+                                onClick={() => handleSort("applicants")}
+                                >
+                                  <div className="">
+                                    <span>Applicants</span>
+                                    <SortIcon field="applicants" />
+                                    </div>
+                                    </th>
+                                    <th className="">
+                                      Actions
+                                    </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody className="">
+                                      {isLoading
+                                      ? Array.from({ length: 5 }).map((_, index) => (
+                                        <LoadingRow key={index} />
+                                      ))
+                                      : paginatedJobs.map((job) => (
+                                        <></>
+                                      ))}
+                                      </tbody>
+                                      </table>
+                                      </div>
+              )}
+              </div>
+
             </div>
           </div>
         </div>
