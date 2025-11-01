@@ -153,8 +153,82 @@ const ApplicationViewer = () => {
                       </div>
                     </div>
 
+                    {/* Applications List */}
+                    <div className=''>
+                      <div className=''>
+                        {applications.map((application) => (
+                          <div
+                            key={application._id}
+                            className=''
+                          >
+                            <div className=''>
+                              {/* Avatar */}
+                              <div className=''>
+                                {application.applicant.avatar ? (
+                                  <img
+                                    src={application.applicant.avatar}
+                                    alt={application.applicant.name}
+                                    className=''
+                                  />
+                                ) : (
+                                  <div className=''>
+                                    <span className=''>
+                                      {getInitials(application.applicant.name)}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
 
+                              {/* Applicant Info */}
+                              <div className=''>
+                                <h3 className=''>
+                                  {application.applicant.name}
+                                </h3>
+                                <p className=''>
+                                  {application.applicant.email}
+                                </p>
+                                <div className=''>
+                                  <Calendar className='' />
+                                  <span>
+                                    Applied{" "}
+                                    {moment(application.createdAt)?.format(
+                                      "DD MM YYYY"
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
+                                 </div>
+
+                              {/* Actions */}
+                              <div className=''>
+                                {/* <StatusBadge status={application.status} /> */}
+                                <button
+                                  onClick={() =>
+                                    handleDownloadResume(
+                                      application.applicant.resume
+                                    )
+                                  }
+                                  className=''
+                                >
+                                  <Download className='' />
+                                  Resume
+                                </button>
+
+                                <button
+                                  onClick={() =>
+                                    setSelectedApplicant(application)
+                                  }
+                                  className=''
+                                >
+                                  <Eye className='' />
+                                  View Profile
+                                </button>
+                              </div>
+                            </div>
+                        ))}
                     </div>
+                  </div>
+                </div>
                   )
                 )}
             </div>
