@@ -194,57 +194,58 @@ const ManageJobs = () => {
 
 
             {/* Table */}
-            <div className="">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden">
               {filteredAndSortedJobs.length === 0 && !isLoading ? (
-                <div className="">
-                  <div className="">
-                    <Search className="" />
+                <div className="text-center p-12">
+                  <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <Search className="w-10 h-10 text-gray-400" />
                     </div>
-                    <h3 className="">
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
                       No jobs found
                     </h3>
-                    <p className="">
+                    <p className="text-gray-500">
                       Try adjusting your search or filter to find what you're looking for.
                     </p>
                   </div>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="">
-                    <thead className="">
+                <div className="w-[75vw] md:w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gradient-to-r from-gray-50 to-gray-100/50">
                       <tr>
                         <th
-                          className=""
+                          className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100/60 transition-all duration-200 min-w-[200px] sm:min-w-0"
                           onClick={() => handleSort("title")}
                         >
-                          <div className="">
+                          <div className="flex items-center space-x-1">
                             <span>Job Title</span>
                             <SortIcon field="title" />
                             </div>
                             </th>
                             <th
-                            className=""
+                            className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer
+                            hover:bg-gray-100/60 transition-all duration-200 min-w-[120px] sm:min-w-0"
                             onClick={() => handleSort("status")}
                             >
-                              <div className="">
+                              <div className="flex items-center space-x-1">
                                 <span>Status</span>
                                 <SortIcon field="status" />
                                 </div>
                                 </th>
                                 <th
-                                className=""
+                                className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100/60 transition-all duration-200 min-w-[130px] sm:min-w-0"
                                 onClick={() => handleSort("applicants")}
                                 >
-                                  <div className="">
+                                  <div className="flex items-center space-x-1">
                                     <span>Applicants</span>
                                     <SortIcon field="applicants" />
                                     </div>
                                     </th>
-                                    <th className="">
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider min-w-[180px] sm:min-w-0">
                                       Actions
                                     </th>
                                     </tr>
                                     </thead>
-                                    <tbody className="">
+                                    <tbody className="bg-white divide-y divide-gray-200">
                                       {isLoading
                                       ? Array.from({ length: 5 }).map((_, index) => (
                                         <LoadingRow key={index} />
