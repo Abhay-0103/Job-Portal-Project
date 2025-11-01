@@ -62,7 +62,6 @@ const ManageJobs = () => {
       }
     });
 
-
     return filtered;
   }, [jobs, searchTerm, statusFilter, sortField, sortDirection]);
 
@@ -107,7 +106,7 @@ const ManageJobs = () => {
 
   // decide which icon to show based on sort direction
   const SortIcon = ({ field }) => {
-    if (sortField !== field) 
+    if (sortField !== field)
       return <ChevronUp className="w-4 h-4 text-gray-400" />;
     return sortDirection === "asc" ? (
       <ChevronUp className="w-4 h-4 text-blue-600" />
@@ -127,23 +126,22 @@ const ManageJobs = () => {
             <div className="h-3 bg-gray-200 rounded w-24"></div>
           </div>
         </div>
-        </td>
-        <td className="px-6 py-4">
-          <div className="h-6  bg-gray-200 rounded-full w-16"></div>
-        </td>
-        <td className="px-6 py-4">
-          <div className="h-4 bg-gray-200 rounded-full w-16"></div>
-        </td>
-        <td className="px-6 py-4">
-          <div className="flex space-x-2">
-            <div className="h-8 bg-gray-200 rounded w-16"></div>
-            <div className="h-8 bg-gray-200 rounded w-16"></div>
-            <div className="h-8 bg-gray-200 rounded w-16"></div>
-          </div>
-        </td>
-        </tr>
-        
-  )
+      </td>
+      <td className="px-6 py-4">
+        <div className="h-6  bg-gray-200 rounded-full w-16"></div>
+      </td>
+      <td className="px-6 py-4">
+        <div className="h-4 bg-gray-200 rounded-full w-16"></div>
+      </td>
+      <td className="px-6 py-4">
+        <div className="flex space-x-2">
+          <div className="h-8 bg-gray-200 rounded w-16"></div>
+          <div className="h-8 bg-gray-200 rounded w-16"></div>
+          <div className="h-8 bg-gray-200 rounded w-16"></div>
+        </div>
+      </td>
+    </tr>
+  );
 
   const getPostedJobs = async (disableLoader) => {
     setIsLoading(!disableLoader);
@@ -177,12 +175,12 @@ const ManageJobs = () => {
     }
   };
 
-    useEffect(() => {
-      getPostedJobs();
-      return () => {};
-    }, []);
+  useEffect(() => {
+    getPostedJobs();
+    return () => {};
+  }, []);
 
-    return (
+  return (
     <DashboardLayout>
       <div className="min-h-screen p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
@@ -192,17 +190,17 @@ const ManageJobs = () => {
               <div className="mb-4 sm:mb-0">
                 <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
                   Job Management
-                  </h1>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Manage your job posting and track applications
-                  </p>
+                </h1>
+                <p className="text-sm text-gray-600 mt-1">
+                  Manage your job posting and track applications
+                </p>
               </div>
 
               <button
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap"
-              onClick={() => navigate("/post-job")}
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap"
+                onClick={() => navigate("/post-job")}
               >
-                <Plus className="w-5 h-5 mr-2"/>
+                <Plus className="w-5 h-5 mr-2" />
                 Add New Job
               </button>
             </div>
@@ -215,39 +213,38 @@ const ManageJobs = () => {
               <div className="flex-1 relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search className="h-4 w-4 text-gray-400" />
-                  </div>
-
-                  <input
-                    type="text"
-                    placeholder="Search Jobs..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="block w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-0 transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
-                  />
                 </div>
-              
+
+                <input
+                  type="text"
+                  placeholder="Search Jobs..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="block w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-0 transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
+                />
+              </div>
+
               {/* Status Filter */}
               <div className="sm:w-48">
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
                   className="block w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200"
-                  >
-                    <option value="All">All Status</option>
-                    <option value="Active">Active</option>
-                    <option value="Closed">Closed</option>
-                  </select>
+                >
+                  <option value="All">All Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Closed">Closed</option>
+                </select>
               </div>
             </div>
-
 
             {/* Results summary */}
             <div className="my-4">
               <p className="text-sm text-gray-600">
-                Showing {paginatedJobs.length} of {filteredAndSortedJobs.length}{" "} jobs
+                Showing {paginatedJobs.length} of {filteredAndSortedJobs.length}{" "}
+                jobs
               </p>
             </div>
-
 
             {/* Table */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden">
@@ -255,14 +252,15 @@ const ManageJobs = () => {
                 <div className="text-center p-12">
                   <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
                     <Search className="w-10 h-10 text-gray-400" />
-                    </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      No jobs found
-                    </h3>
-                    <p className="text-gray-500">
-                      Try adjusting your search or filter to find what you're looking for.
-                    </p>
                   </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    No jobs found
+                  </h3>
+                  <p className="text-gray-500">
+                    Try adjusting your search or filter to find what you're
+                    looking for.
+                  </p>
+                </div>
               ) : (
                 <div className="w-[75vw] md:w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                   <table className="min-w-full divide-y divide-gray-200">
@@ -275,128 +273,119 @@ const ManageJobs = () => {
                           <div className="flex items-center space-x-1">
                             <span>Job Title</span>
                             <SortIcon field="title" />
-                            </div>
-                            </th>
-                            <th
-                            className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer
+                          </div>
+                        </th>
+                        <th
+                          className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer
                             hover:bg-gray-100/60 transition-all duration-200 min-w-[120px] sm:min-w-0"
-                            onClick={() => handleSort("status")}
-                            >
-                              <div className="flex items-center space-x-1">
-                                <span>Status</span>
-                                <SortIcon field="status" />
+                          onClick={() => handleSort("status")}
+                        >
+                          <div className="flex items-center space-x-1">
+                            <span>Status</span>
+                            <SortIcon field="status" />
+                          </div>
+                        </th>
+                        <th
+                          className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100/60 transition-all duration-200 min-w-[130px] sm:min-w-0"
+                          onClick={() => handleSort("applicants")}
+                        >
+                          <div className="flex items-center space-x-1">
+                            <span>Applicants</span>
+                            <SortIcon field="applicants" />
+                          </div>
+                        </th>
+                        <th className="px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider min-w-[180px] sm:min-w-0">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {isLoading
+                        ? Array.from({ length: 5 }).map((_, index) => (
+                            <LoadingRow key={index} />
+                          ))
+                        : paginatedJobs.map((job) => (
+                            <tr key={job.id} className="">
+                              <td className="">
+                                <div>
+                                  <div className="">{job.title}</div>
+                                  <div className="">{job.company}</div>
                                 </div>
-                                </th>
-                                <th
-                                className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100/60 transition-all duration-200 min-w-[130px] sm:min-w-0"
-                                onClick={() => handleSort("applicants")}
+                              </td>
+                              <td className="">
+                                <span
+                                  className={`inline-flex px-3 py-1.5 text-xs font-semibold rounded-full ${
+                                    job.status === "Active"
+                                      ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                                      : "bg-gray-100 text-gray-700 border border-gray-200"
+                                  }`}
                                 >
-                                  <div className="flex items-center space-x-1">
-                                    <span>Applicants</span>
-                                    <SortIcon field="applicants" />
-                                    </div>
-                                    </th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider min-w-[180px] sm:min-w-0">
-                                      Actions
-                                    </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                      {isLoading
-                                      ? Array.from({ length: 5 }).map((_, index) => (
-                                        <LoadingRow key={index} />
-                                      ))
-                                      : paginatedJobs.map((job) => (
-                                        <tr
-                                          key={job.id}
-                                          className=""
-                                          >
-                                            <td className="">
-                                              <div>
-                                                <div className="">
-                                                  {job.title}
-                                                </div>
-                                                <div className="">
-                                                  {job.company}
-                                                </div>
-                                              </div>
-                                            </td>
-                                            <td className="">
-                                              <span
-                                              className={`inline-flex px-3 py-1.5 text-xs font-semibold rounded-full ${
-    job.status === "Active"
-      ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
-      : "bg-gray-100 text-gray-700 border border-gray-200"
-  }`}
+                                  {job.status}
+                                </span>
+                              </td>
+                              <td className="">
+                                <button
+                                  className=""
+                                  onClick={() =>
+                                    navigate("/applicants", {
+                                      state: { jobId: job.id },
+                                    })
+                                  }
+                                >
+                                  <Users className="" />
+                                  {job.applicants}
+                                </button>
+                              </td>
+                              <td className="">
+                                <div className="">
+                                  <button
+                                    className=""
+                                    onClick={() =>
+                                      navigate("/post-job", {
+                                        state: { jobId: job.id },
+                                      })
+                                    }
+                                  >
+                                    <Edit className="" />
+                                  </button>
 
-                                              >
-                                                {job.status}
-                                              </span>
-                                            </td>
-                                            <td className="">
-                                              <button
-                                              className=""
-                                              onClick={() => navigate("/applicants", { state: { jobId: job.id}, })}
-                                              >
-                                                <Users className="" />
-                                                {job.applicants}
-                                              </button>
-                                            </td>
-                                              <td className="">
-                                                <div className="">
-                                                  <button
-                                                  className=""
-                                                  onClick={() => navigate("/post-job", {
-                                                    state: { jobId:
-                                                      job.id },
-                                                  })}
-                                                  >
-                                                    <Edit className="" />
-                                                    </button>
-
-                                                    {job.status === "Active" ? (
-                                                      <button
-                                                    onClick={() => handleStatusChange(job.id)}
-                                                    className=""
-                                                    >
-                                                      <X className="" />
-                                                      <span className="">
-                                                        Close
-                                                        </span>
-                                                    </button>
-                                                    ) : (
-                                                      <button
-                                                    onClick={() => handleStatusChange(job.id)}
-                                                    className=""
-                                                    >
-                                                      <Plus className="" />
-                                                      <span className="">
-                                                        Activate
-                                                        </span>
-                                                    </button>
-                                                    )}
-                                                  <button
-                                                  onClick={() => handleDeleteJob(job.id)}
-                                                  className=""
-                                                  >
-                                                    <Trash2 className="" />
-                                                    </button>
-                                                  </div>
-                                                </td>
-                                                </tr>
-                                      ))}
-                                      </tbody>
-                                      </table>
-                                      </div>
+                                  {job.status === "Active" ? (
+                                    <button
+                                      onClick={() => handleStatusChange(job.id)}
+                                      className=""
+                                    >
+                                      <X className="" />
+                                      <span className="">Close</span>
+                                    </button>
+                                  ) : (
+                                    <button
+                                      onClick={() => handleStatusChange(job.id)}
+                                      className=""
+                                    >
+                                      <Plus className="" />
+                                      <span className="">Activate</span>
+                                    </button>
+                                  )}
+                                  <button
+                                    onClick={() => handleDeleteJob(job.id)}
+                                    className=""
+                                  >
+                                    <Trash2 className="" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                    </tbody>
+                  </table>
+                </div>
               )}
-              </div>
-
             </div>
           </div>
         </div>
+      </div>
     </DashboardLayout>
-    )
-  };
-
+  );
+};
 
 export default ManageJobs;
