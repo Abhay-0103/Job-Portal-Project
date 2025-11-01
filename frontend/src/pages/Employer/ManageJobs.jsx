@@ -83,15 +83,24 @@ const ManageJobs = () => {
   };
 
   // Toggle job status
-  const handleStatusChange = async (jobId) => {
-    try {
-      const response = await axiosInstance.put(
-        API_PATHS.JOBS.TOGGLE_CLOSE(jobId)
-      );
-    } catch (error) {
-      console.error("Error toggling job status", error);
-    }
-  };
+const handleStatusChange = async (jobId) => {
+  try {
+    await axiosInstance.put(API_PATHS.JOBS.TOGGLE_CLOSE(jobId));
+
+    setJobs((prevJobs) =>
+      prevJobs.map((job) =>
+        job.id === jobId
+          ? { ...job, status: job.status === "Active" ? "Closed" : "Active" }
+          : job
+      )
+    );
+
+    toast.success("Job Status Updated!");
+  } catch (error) {
+    console.error("Error toggling job status", error);
+    toast.error("Failed to update job status");
+  }
+};
 
   // Delete spefifc job
   const handleDeleteJob = async (jobId) => {
@@ -254,7 +263,7 @@ const ManageJobs = () => {
                     <Search className="w-10 h-10 text-gray-400" />
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    No jobs found
+                    No Jobs Found
                   </h3>
                   <p className="text-gray-500">
                     Try adjusting your search or filter to find what you're
