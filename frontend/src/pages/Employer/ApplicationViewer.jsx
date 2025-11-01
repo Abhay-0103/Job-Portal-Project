@@ -117,7 +117,46 @@ const ApplicationViewer = () => {
           ) : (
             // Applications by Job
             <div className='space-y-8'>
+              {Object.values(groupedApplications).map(
+                ({ job, applications }) => (
+                  <div 
+                    key={job._id}
+                    className=''
+                  >
+                    {/* Job Header */}
+                    <div className=''>
+                      <div className=''>
+                        <div>
+                          <h2 className=''>
+                            {job.title}
+                          </h2>
+                          <div className=''>
+                            <div className=''>
+                              <MapPin className='' />
+                              <span className=''>{job.location}</span>
+                            </div>
+                            <div className=''>
+                              <Briefcase className='' />
+                              <span className=''>{job.type}</span>
+                            </div>
+                            <div className=''>
+                              <span className=''>{job.category}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className=''>
+                          <span className=''>
+                            {applications.length} Applications
+                            {applications.length !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
 
+
+                    </div>
+                  )
+                )}
             </div>
           )}
           </div>
