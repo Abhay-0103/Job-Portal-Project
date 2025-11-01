@@ -153,12 +153,12 @@ const ManageJobs = () => {
           </div>
 
           {/* Filters */}
-          <div className="">
-            <div className="">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/5 border border-white/20 p-6 mb-8">
+            <div className="flex flex-col sm:flex-row gap-4">
               {/* Search */}
-              <div className="">
-                <div className="">
-                  <Search className="" />
+              <div className="flex-1 relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-4 w-4 text-gray-400" />
                   </div>
 
                   <input
@@ -166,27 +166,33 @@ const ManageJobs = () => {
                     placeholder="Search Jobs..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className=""
+                    className="block w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-0 transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
                   />
                 </div>
               
               {/* Status Filter */}
-              <div className="">
+              <div className="sm:w-48">
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className=""
+                  className="block w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200"
                   >
-                    <Option value="All">All Status</Option>
-                    <Option value="Active">Active</Option>
-                    <Option value="Closed">Closed</Option>
+                    <option value="All">All Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Closed">Closed</option>
                   </select>
               </div>
             </div>
 
 
-            {/* Results Table */}
-            
+            {/* Results summary */}
+            <div className="my-4">
+              <p className="text-sm text-gray-600">
+                Showing {paginatedJobs.length} of {filteredAndSortedJobs.length}{" "} jobs
+              </p>
+            </div>
+
+            </div>
           </div>
         </div>
     </DashboardLayout>
