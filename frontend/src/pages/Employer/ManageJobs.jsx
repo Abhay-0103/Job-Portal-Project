@@ -152,7 +152,41 @@ const ManageJobs = () => {
             </div>
           </div>
 
+          {/* Filters */}
+          <div className="">
+            <div className="">
+              {/* Search */}
+              <div className="">
+                <div className="">
+                  <Search className="" />
+                  </div>
 
+                  <input
+                    type="text"
+                    placeholder="Search Jobs..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className=""
+                  />
+                </div>
+              
+              {/* Status Filter */}
+              <div className="">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className=""
+                  >
+                    <Option value="All">All Status</Option>
+                    <Option value="Active">Active</Option>
+                    <Option value="Closed">Closed</Option>
+                  </select>
+              </div>
+            </div>
+
+
+            {/* Results Table */}
+            
           </div>
         </div>
     </DashboardLayout>
