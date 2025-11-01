@@ -121,31 +121,31 @@ const ApplicationViewer = () => {
                 ({ job, applications }) => (
                   <div 
                     key={job._id}
-                    className=''
+                    className='bg-white rounded-xl shadow-md overflow-hidden'
                   >
                     {/* Job Header */}
-                    <div className=''>
-                      <div className=''>
+                    <div className='bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4'>
+                      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
                         <div>
-                          <h2 className=''>
+                          <h2 className='text-lg font-semibold text-white'>
                             {job.title}
                           </h2>
-                          <div className=''>
-                            <div className=''>
-                              <MapPin className='' />
-                              <span className=''>{job.location}</span>
+                          <div className='flex flex-wrap items-center gap-4 mt-2 text-blue-100'>
+                            <div className='flex items-center gap-1'>
+                              <MapPin className='h-4 w-4' />
+                              <span className='text-sm'>{job.location}</span>
                             </div>
-                            <div className=''>
-                              <Briefcase className='' />
-                              <span className=''>{job.type}</span>
+                            <div className='flex items-center gap-1'>
+                              <Briefcase className='h-4 w-4' />
+                              <span className='text-sm'>{job.type}</span>
                             </div>
-                            <div className=''>
-                              <span className=''>{job.category}</span>
+                            <div className='flex items-center gap-1'>
+                              <span className='text-sm'>{job.category}</span>
                             </div>
                           </div>
                         </div>
-                        <div className=''>
-                          <span className=''>
+                        <div className='bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2'>
+                          <span className='text-sm text-white font-medium'>
                             {applications.length} Applications
                             {applications.length !== 1 ? 's' : ''}
                           </span>
