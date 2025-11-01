@@ -59,7 +59,15 @@ const ManageJobs = () => {
   };
 
   // Toggle job status
-  const handleStatusChange = async (jobId) => {};
+  const handleStatusChange = async (jobId) => {
+    try {
+      const response = await axiosInstance.put(
+        API_PATHS.JOBS.TOGGLE_CLOSE(jobId)
+      );
+    } catch (error) {
+      console.error("Error toggling job status", error);
+    }
+  };
 
   // Delete spefifc job
   const handleDeleteJob = async (jobId) => {};
