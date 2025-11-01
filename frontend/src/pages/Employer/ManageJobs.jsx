@@ -305,14 +305,21 @@ const ManageJobs = () => {
                             <LoadingRow key={index} />
                           ))
                         : paginatedJobs.map((job) => (
-                            <tr key={job.id} className="">
-                              <td className="">
+                            <tr
+                              key={job.id}
+                              className="hover:bg-blue-50/30 transition-all duration-200 border-b border-gray-100/60"
+                            >
+                              <td className="px-6 py-5 whitespace-nowrap min-w-[200px] sm:min-w-0">
                                 <div>
-                                  <div className="">{job.title}</div>
-                                  <div className="">{job.company}</div>
+                                  <div className="text-sm font-semibold text-gray-900">
+                                    {job.title}
+                                  </div>
+                                  <div className="text-xs text-gray-500 font-medium">
+                                    {job.company}
+                                  </div>
                                 </div>
                               </td>
-                              <td className="">
+                              <td className="px-6 py-5 whitespace-nowrap min-w-[120px] sm:min-w-0">
                                 <span
                                   className={`inline-flex px-3 py-1.5 text-xs font-semibold rounded-full ${
                                     job.status === "Active"
@@ -323,54 +330,58 @@ const ManageJobs = () => {
                                   {job.status}
                                 </span>
                               </td>
-                              <td className="">
+                              <td className="px-6 py-5 whitespace-nowrap min-w-[130px] sm:min-w-0">
                                 <button
-                                  className=""
+                                  className="flex items-center text-sm text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200 hover:bg-blue-50 px-2 py-1 rounded-lg"
                                   onClick={() =>
                                     navigate("/applicants", {
                                       state: { jobId: job.id },
                                     })
                                   }
                                 >
-                                  <Users className="" />
+                                  <Users className="w-4 h-4 mr-1.5" />
                                   {job.applicants}
                                 </button>
                               </td>
-                              <td className="">
-                                <div className="">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium min-w-[180px] sm:min-w-0">
+                                <div className="flex space-x-2">
                                   <button
-                                    className=""
+                                    className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors duration-200"
                                     onClick={() =>
                                       navigate("/post-job", {
                                         state: { jobId: job.id },
                                       })
                                     }
                                   >
-                                    <Edit className="" />
+                                    <Edit className="w-4 h-4" />
                                   </button>
 
                                   {job.status === "Active" ? (
                                     <button
                                       onClick={() => handleStatusChange(job.id)}
-                                      className=""
+                                      className="flex items-center gap-2 text-xs text-orange-600 hover:text-orange-800 p-2 rounded-lg hover:bg-orange-50 transition-colors duration-200"
                                     >
-                                      <X className="" />
-                                      <span className="">Close</span>
+                                      <X className="w-4 h-4" />
+                                      <span className="hidden sm:inline">
+                                        Close
+                                      </span>
                                     </button>
                                   ) : (
                                     <button
                                       onClick={() => handleStatusChange(job.id)}
-                                      className=""
+                                      className="flex items-center gap-2 text-xs text-green-600 hover:text-green-800 p-2 rounded-lg hover:bg-green-50 transition-colors duration-200"
                                     >
-                                      <Plus className="" />
-                                      <span className="">Activate</span>
+                                      <Plus className="w-4 h-4" />
+                                      <span className="hidden sm:inline">
+                                        Activate
+                                      </span>
                                     </button>
                                   )}
                                   <button
                                     onClick={() => handleDeleteJob(job.id)}
-                                    className=""
+                                    className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50 transition-colors duration-200"
                                   >
-                                    <Trash2 className="" />
+                                    <Trash2 className="w-4 h-4" />
                                   </button>
                                 </div>
                               </td>
