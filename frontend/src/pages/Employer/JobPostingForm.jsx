@@ -156,7 +156,6 @@ const JobPostingForm = () => {
   };
 
   useEffect(() => {
-
     const fetchJobDetails = async () => {
       if (jobId) {
         try {
@@ -187,11 +186,8 @@ const JobPostingForm = () => {
 
     fetchJobDetails();
 
-      return () => {
-          
-      }
-  }, [])
-
+    return () => {};
+  }, []);
 
   if (isPreview) {
     return (
