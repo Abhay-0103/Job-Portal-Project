@@ -307,7 +307,54 @@ const ManageJobs = () => {
                                         <LoadingRow key={index} />
                                       ))
                                       : paginatedJobs.map((job) => (
-                                        <></>
+                                        <tr
+                                          key={job.id}
+                                          className=""
+                                          >
+                                            <td className="">
+                                              <div>
+                                                <div className="">
+                                                  {job.title}
+                                                </div>
+                                                <div className="">
+                                                  {job.company}
+                                                </div>
+                                              </div>
+                                            </td>
+                                            <td className="">
+                                              <span
+                                              className={`inline-flex px-3 py-1.5 text-xs font-semibold rounded-full ${
+    job.status === "Active"
+      ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+      : "bg-gray-100 text-gray-700 border border-gray-200"
+  }`}
+
+                                              >
+                                                {job.status}
+                                              </span>
+                                            </td>
+                                            <td className="">
+                                              <button
+                                              className=""
+                                              onClick={() => navigate("/applicants", { state: { jobId: job.id}, })}
+                                              >
+                                                <Users className="" />
+                                                {job.applicants}
+                                              </button>
+                                            </td>
+                                              <td className="">
+                                                <div className="">
+                                                  <button
+                                                  className=""
+                                                  onClick={() => navigate("/post-job", {
+                                                    state: { jobId:
+                                                      job.id },
+                                                  })}
+                                                  >
+
+                                                    
+                                                    }
+                                                  })}
                                       ))}
                                       </tbody>
                                       </table>
