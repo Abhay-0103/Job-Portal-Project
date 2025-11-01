@@ -105,13 +105,21 @@ const ApplicationViewer = () => {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 pb-8'>
           {Object.keys(groupedApplications).length === 0 ? (
             // Empty State
-            <div className=''>
-              <Users className='' />
-              <h3 className=''>
+            <div className='text-center py-16'>
+              <Users className='mx-auto h-24 w-24 text-gray-300' />
+              <h3 className='mt-4 text-lg font-medium text-gray-900'>
                 No Applications Available
               </h3>
-              <p className=''>
+              <p className='mt-2 text-gray-500'>
                 No  Applications Found At The Moment.
+              </p>
+            </div>
+          ) : (
+            // Applications by Job
+            <div className='space-y-8'>
+
+            </div>
+          )}
           </div>
 
 
