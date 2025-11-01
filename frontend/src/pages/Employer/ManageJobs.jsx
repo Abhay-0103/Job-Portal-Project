@@ -351,10 +351,39 @@ const ManageJobs = () => {
                                                       job.id },
                                                   })}
                                                   >
+                                                    <Edit className="" />
+                                                    </button>
 
-                                                    
-                                                    }
-                                                  })}
+                                                    {job.status === "Active" ? (
+                                                      <button
+                                                    onClick={() => handleStatusChange(job.id)}
+                                                    className=""
+                                                    >
+                                                      <X className="" />
+                                                      <span className="">
+                                                        Close
+                                                        </span>
+                                                    </button>
+                                                    ) : (
+                                                      <button
+                                                    onClick={() => handleStatusChange(job.id)}
+                                                    className=""
+                                                    >
+                                                      <Plus className="" />
+                                                      <span className="">
+                                                        Activate
+                                                        </span>
+                                                    </button>
+                                                    )}
+                                                  <button
+                                                  onClick={() => handleDeleteJob(job.id)}
+                                                  className=""
+                                                  >
+                                                    <Trash2 className="" />
+                                                    </button>
+                                                  </div>
+                                                </td>
+                                                </tr>
                                       ))}
                                       </tbody>
                                       </table>
