@@ -18,6 +18,7 @@ import DashboardLayout from '../../components/layout/DashboardLayout'
 import axiosInstance from '../../utils/axiosInstance'
 import { API_PATHS } from '../../utils/apiPaths'
 import { getInitials } from '../../utils/helper'
+import StatusBadge from '../../components/layout/StatusBadge'
 
 const ApplicationViewer = () => {
 
@@ -201,7 +202,7 @@ const ApplicationViewer = () => {
 
                               {/* Actions */}
                               <div className='flex items-center gap-3 mt-1 md:m-0'>
-                                {/* <StatusBadge status={application.status} /> */}
+                                <StatusBadge status={application.status} /> 
                                 <button
                                   onClick={() =>
                                     handleDownloadResume(
