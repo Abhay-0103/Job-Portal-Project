@@ -49,7 +49,14 @@ const ManageJobs = () => {
     startIndex + itemsPerPage
   );
 
-  const handleSort = (field) => {};
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
 
   // Toggle job status
   const handleStatusChange = async (jobId) => {};
