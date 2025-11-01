@@ -70,7 +70,15 @@ const ManageJobs = () => {
   };
 
   // Delete spefifc job
-  const handleDeleteJob = async (jobId) => {};
+  const handleDeleteJob = async (jobId) => {
+    try {
+      await axiosInstance.delete(API_PATHS.JOBS.DELETE_JOB(jobId));
+      setJobs(jobs.filter((job) => job.id !== jobId));
+      toast.success("Job deleted successfully");
+    } catch (error) {
+      console.error("Error deleting job", error);
+    }
+  };
 
   // decide which icon to show based on sort direction
   const SortIcon = ({ field }) => {};
