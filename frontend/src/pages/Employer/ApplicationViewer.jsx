@@ -1,8 +1,122 @@
+// Global Imports
 import React from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import {
+  Users,
+  Calendar,
+  MapPin,
+  Briefcase,
+  Download,
+  Eye,
+  ArrowLeft,
+} from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import moment from 'moment'
+
+// Local Imports
+import DashboardLayout from '../../components/layout/DashboardLayout'
+import axiosInstance from '../../utils/axiosInstance'
+import { API_PATHS } from '../../utils/apiPaths'
+import { getInitials } from '../../utils/helper'
 
 const ApplicationViewer = () => {
+
+  const location = useLocation();
+  const jobId = location.state?.jobId || null;
+
+  const navigate = useNavigate();
+
+  const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedApplicant, setSelectedApplicant] = useState(null);
+
+  const fetchApplications = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get(
+        API_PATHS.APPLICATIONS.GET_ALL_APPLICATIONS(jobId)
+      );
+      setApplications(response.data);
+    } catch (error) {
+      console.error("Failed to fetch applications:");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (jobId) fetchApplications();
+    else navigate('/manage-jobs');
+  }, []);
+
+  // Group applications by jobs
+  const groupedApplications = useMemo(() => {
+    const filtered = applications.filter((app) => app.job.title.toLowerCase());
+
+    return filtered.reduce((acc, app) => {
+      const jobId = app.job._id;
+      if (!acc[jobId]) {
+        acc[jobId] = {
+          job: app.job,
+          applications: [],
+        };
+      }
+      acc[jobId].applications.push(app);
+      return acc;
+    }, {});
+  }, [applications]);
+
+  const handleDownloadResume = (resumeUrl) => {
+    window.open(resumeUrl, '_blank');
+  };
+
   return (
-    <div>ApplicationViewer</div>
+    <DashboardLayout activeMenu="manage-jobs">
+      {loading && (
+        <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+          <div className='text-center'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto'></div>
+            <p className='mt-4 text-gray-600'>Loading Applications...</p>
+          </div>
+          </div>
+      )}
+
+      <div className='min-h-screen bg-gray-50'>
+        {/* Header */}
+        <div className='mb-8'>
+          <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
+            <div className='flex items-center gap-4 mb-4 sm:mb-0'>
+              <button
+                onClick={() => navigate("/manage-jobs")}
+                className='group flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-white bg-white/50 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 border border-gray-200 hover:border-transparent rounded-xl transition-all duration-300 shadow-lg shadow-gray-100 hover:shadow-xl'
+              >
+                <ArrowLeft className='h-4 w-4 transition-transform group-hover:-translate-x-1' />
+                <span className=''>Back</span>
+              </button>
+
+              <h1 className='text-xl md:text-2xl font-semibold text-gray-900'>
+                Applications Overview
+                </h1>
+            </div>
+            </div>
+          </div>
+
+        {/* Main Content */}
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 pb-8'>
+          {Object.keys(groupedApplications).length === 0 ? (
+            // Empty State
+            <div className=''>
+              <Users className='' />
+              <h3 className=''>
+                No Applications Available
+              </h3>
+              <p className=''>
+                No  Applications Found At The Moment.
+          </div>
+
+
+          </div>
+    </DashboardLayout>
   )
 }
 
