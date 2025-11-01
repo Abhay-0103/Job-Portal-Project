@@ -91,7 +91,7 @@ const ApplicationViewer = () => {
                 className='group flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-white bg-white/50 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 border border-gray-200 hover:border-transparent rounded-xl transition-all duration-300 shadow-lg shadow-gray-100 hover:shadow-xl'
               >
                 <ArrowLeft className='h-4 w-4 transition-transform group-hover:-translate-x-1' />
-                <span className=''>Back</span>
+                <span className='cursor-pointer'>Back</span>
               </button>
 
               <h1 className='text-xl md:text-2xl font-semibold text-gray-900'>
