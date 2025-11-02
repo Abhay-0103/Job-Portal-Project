@@ -43,7 +43,36 @@ const JobSeekerDashboard = () => {
 
   // Functions to fetch jobs from API
   const fetchJobs = async (filterParams = {}) => {
+    try {
+      setLoading(true);
+      setError(null);
 
+      // Build query parameters
+      const params = new URLSearchParams();
+
+      if (filterParams.keyword) params.append('keyword', filterParams.keyword);
+      if (filterParams.location) params.append('location', filterParams.location);
+      if (filterParams.minSalary) params.append('minSalary', filterParams.minSalary);
+      if (filterParams.maxSalary) params.append('maxSalary', filterParams.maxSalary);
+      if (filterParams.category) params.append('category', filterParams.category);
+      if (filterParams.type) params.append('type', filterParams.type);
+      if (user) params.append('userId', user?._id);
+
+      const response = await axiosInstance.get(
+        `${API_PATHS.JOBS.GET_ALL_JOBS}?${params.toString()}`);
+
+        const jobsData = Array.isArray(response.data)
+         ? response.data
+         : response.data.jobs || [];
+
+      setJobs(jobsData);
+    } catch (err) {
+      console.error("Error fetching jobs:", err);
+      setError("Failed to load jobs. Please try again later.");
+      setJobs([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Fetch jobs on component mount and when filters change
@@ -81,6 +110,67 @@ const JobSeekerDashboard = () => {
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
+
+  const toggleSection = (section) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  const clearAllFilters = () => {
+    setFilters({
+      keyword: '',
+      location: '',
+      category: '',
+      type: '',
+      minSalary: '',
+      maxSalary: '',
+    });
+  };
+
+  const MobileFilterOverlay = () => (
+    <div 
+      className={`fixed inset-0 z-50 lg:hidden ${showMobileFilters ? "" : "hidden" 
+        }`}
+        >
+          <div 
+          className=''
+          onClick={() => setShowMobileFilters(false)}
+          />
+          <div className=''>
+            <div className=''>
+              <h3 className=''>Filters</h3>
+              <button
+              onClick={() => setShowMobileFilters(false)}
+              className=''
+              >
+                <X className='' />
+                </button>
+            </div>
+            <div className=''>
+              {/* Filters go here */}
+           <FilterContent
+           toggleSection={toggleSection}
+           clearAllFilters={clearAllFilters}
+           expandedSections={expandedSections}
+           filters={filters}
+           handleFilterChange={handleFilterChange}
+            />
+            </div>
+            </div>
+          </div>
+  );
+
+  const toggleSaveJob = async (jobId, isSaved) => {
+  };
+
+  const applyToJob = async (jobId) => {
+  };
+
+  if (jobs.length == 0 && loading) {
+    return <LoadingSpinner />
+  }
 
   return (
     <div>JobSeekerDashboard</div>
