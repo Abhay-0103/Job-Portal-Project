@@ -181,12 +181,26 @@ const JobSeekerDashboard = () => {
 
       fetchJobs();
     } catch (err) {
-      console.log("Error saving/removing job:", err);
+      console.log("Error:", err);
       toast.error("Failed to update saved jobs. Please try again.");
     }
   };
 
-  const applyToJob = async (jobId) => {};
+  const applyToJob = async (jobId) => {
+
+    try {
+      if (jobId) {
+        await axiosInstance.post(API_PATHS.APPLICATIONS.APPLY_TO_JOB(jobId));
+        toast.success("Applied to job successfully");
+      }
+
+      fetchJobs();
+    } catch (err) {
+      console.log("Error:", err);
+      const errMsg = err?.response?.data?.message;
+      toast.error(errMsg || "Failed to apply to job. Please try again.");
+    }
+  };
 
   if (jobs.length == 0 && loading) {
     return <LoadingSpinner />;
