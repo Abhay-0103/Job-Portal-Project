@@ -66,7 +66,29 @@ const EmployerProfilePage = () => {
     }
   };
 
-  const handleSave = async () => {};
+  const handleSave = async () => {
+    setSaving(true);
+
+    try {
+      const response = await axiosInstance.put(
+        API_PATHS.AUTH.UPDATE_PROFILE,
+        formData
+      );
+
+      if (response.status === 200) {
+        toast.success("Profile Updated Successfully!!");
+
+        // Update local profile data and exit edit mode
+        setProfileData({ ...formData });
+        updateUser({ ...formData });
+        setEditMode(false);
+      }
+    } catch (error) {
+      console.error("Profile Upadte Failed:", error);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleCancel = () => {
     setFormData({ ...profileData });
