@@ -12,6 +12,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { useAuth } from "../../context/AuthContext";
 import FilterContent from "./components/FilterContent";
 import SearchHeader from "./components/SearchHeader";
+import Navbar from "../../components/layout/Navbar";
 
 const JobSeekerDashboard = () => {
   const { user } = useAuth();
@@ -209,7 +210,7 @@ const JobSeekerDashboard = () => {
 
   return (
     <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
-
+      <Navbar />
 
       <div className="min-h-screen mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
