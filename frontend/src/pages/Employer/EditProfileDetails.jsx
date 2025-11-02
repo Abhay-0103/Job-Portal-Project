@@ -169,23 +169,23 @@ const EditProfileDetails = ({
                 </div>
 
                 {/* Action Buttons */}
-                <div className="">
+                <div className="flex justify-end space-x-4 mt-8 pt-6 border-t">
                   <button
                     onClick={handleCancel}
-                    className=""
+                    className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2"
                   >
-                    <X className="" />
+                    <X className="w-4 h-4" />
                     <span>Cancel</span>
                   </button>
                   <button
                   onClick={handleSave}
                   disabled={saving || uploading.avatar || uploading.logo}
-                  className=""
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed "
                 >
                   {saving ? (
-                    <div className=""></div>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin "></div>
                   ) : (
-                    <Save className="" />
+                    <Save className="w-4 h-4" />
                   )}
                   <span>{saving ? "Saving..." : "Save Changes"}</span>
                 </button>
