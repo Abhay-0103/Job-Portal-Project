@@ -1,9 +1,9 @@
-import React from 'react'
+// global imports
+import React from "react";
+import { MapPin, Search } from "lucide-react";
 
-const SearchHeader = () => {
-  return (
-    <div>SearchHeader</div>
-  )
-}
+const SearchHeader = ({ filters, handleFilterChange }) => {
+  return 
+};
 
-export default SearchHeader
+export default SearchHeader;
