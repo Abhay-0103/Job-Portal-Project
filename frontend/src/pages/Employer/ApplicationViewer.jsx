@@ -19,6 +19,7 @@ import axiosInstance from '../../utils/axiosInstance'
 import { API_PATHS } from '../../utils/apiPaths'
 import { getInitials } from '../../utils/helper'
 import StatusBadge from '../../components/layout/StatusBadge'
+import ApplicantProfilPreview from '../../components/Cards/ApplicantProfilPreview'
 
 const ApplicationViewer = () => {
 
@@ -237,7 +238,18 @@ const ApplicationViewer = () => {
           )}
           </div>
 
-
+          {/* Profile Modal */}
+          {selectedApplicant && (
+            <ApplicantProfilPreview
+              selectedApplicant={selectedApplicant}
+              setSelectedApplicant={setSelectedApplicant}
+              handleDownloadResume={handleDownloadResume}
+              handleClose={() => {
+                setSelectedApplicant(null);
+                fetchApplications();
+              }}
+            />
+          )}
           </div>
     </DashboardLayout>
   )
