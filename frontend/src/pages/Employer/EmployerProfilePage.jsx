@@ -53,7 +53,18 @@ const EmployerProfilePage = () => {
     }
   };
 
-  const handleImageChange = (e, type) => {};
+  const handleImageChange = (e, type) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Create a preview URL
+      const previewUrl = URL.createObjectURL(file);
+      const field = type === "avatar" ? "avatar" : "companyLogo";
+      handleInputChange(field, previewUrl);
+
+      // Upload the image
+      handleImageUpload(file, type);
+    }
+  };
 
   const handleSave = async () => {};
 
