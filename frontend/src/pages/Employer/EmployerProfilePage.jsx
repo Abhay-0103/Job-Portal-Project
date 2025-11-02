@@ -93,6 +93,30 @@ const EmployerProfilePage = () => {
                   </div>
                   </div>
 
+                {/* Company Info */}
+                <div className='space-y-6'>
+                  <h2 className='text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2'>
+                    Company Information
+                  </h2>
+
+                  {/* Company Logo and Name */}
+                  <div className='flex items-center space-x-4'>
+                    <img
+                      src={profileData.companyLogo}
+                      alt='Company Logo'
+                      className='w-20 h-20 rounded-lg object-cover border-4 border-blue-50' 
+                    />
+                    <div>
+                      <h3 className='text-lg font-semibold text-gray-800'>
+                        {profileData.companyName}
+                      </h3>
+                      <div className='flex items-center text-sm text-gray-600 mt-1'>
+                        <Building2 className='h-4 w-4 mr-2' />
+                        <span>Company</span>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
                   </div>
 
 
