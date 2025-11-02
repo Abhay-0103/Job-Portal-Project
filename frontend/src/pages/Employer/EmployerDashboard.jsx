@@ -106,7 +106,7 @@ const EmployerDashboard = () => {
   }, []);
 
   return (
-    <DashboardLayout activeMenu="employer-dashboard">
+    <DashboardLayout activeMenu="employers-dashboard">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
