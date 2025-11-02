@@ -11,6 +11,7 @@ import axiosInstance from '../../utils/axiosInstance'
 import { API_PATHS } from '../../utils/apiPaths'
 import { useAuth } from '../../context/AuthContext'
 import { min } from 'moment'
+import FilterContent from './components/FilterContent'
 
 const JobSeekerDashboard = () => {
 
@@ -135,20 +136,20 @@ const JobSeekerDashboard = () => {
         }`}
         >
           <div 
-          className=''
+          className='fixed inset-0 bg-black/50'
           onClick={() => setShowMobileFilters(false)}
           />
-          <div className=''>
-            <div className=''>
-              <h3 className=''>Filters</h3>
+          <div className='fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl'>
+            <div className='flex items-center justify-between p-6 border-b border-gray-200'>
+              <h3 className='font-bold text-gray-900 text-lg'>Filters</h3>
               <button
               onClick={() => setShowMobileFilters(false)}
-              className=''
+              className='p-2 hover:bg-gray-100 rounded-xl transition-colors'
               >
-                <X className='' />
+                <X className='w-5 h-5' />
                 </button>
             </div>
-            <div className=''>
+            <div className='p-6 overflow-y-auto h-full pb-20'>
               {/* Filters go here */}
            <FilterContent
            toggleSection={toggleSection}
