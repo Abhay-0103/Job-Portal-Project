@@ -48,40 +48,42 @@ const ApplicantProfilPreview = ({
         }
     };
 
-  return <div className="">
-    <div className="">
+  return <div className="fixed inset-0 bg-[rgba(0,0,0,0.2)] bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
-        <div className="">
-            <h3 className="">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900">
                 Applicant Profile
             </h3>
             <button
             onClick={() => handleClose()}
-            className=""
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
             >
-                <X className="" />
+                <X className="h-5 w-5 text-gray-500" />
             </button>
         </div>
 
         {/* Modal Content */}
-        <div className="">
-            <div className="">
+        <div className="p-6">
+            <div className="text-center mb-6">
                 {selectedApplicant.applicant.avatar ? (
                     <img
                     src={selectedApplicant.applicant.avatar}
                     alt={selectedApplicant.applicant.name}
-                    className=""
+                    className="h-20 w-20 rounded-full object-cover mx-auto"
                     />
                 ) : (
-                    <div className="">
-                        <span className="">{getInitials(selectedApplicant.applicant.name)}</span>
+                    <div className="h-20 w-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
+                        <span className="text-blue-600 font-semibold text-xl">{getInitials(selectedApplicant.applicant.name)}</span>
                     </div>
                 )}
-                <h4 className="">
+                <h4 className="mt-4 text-xl font-semibold text-gray-900">
                     {selectedApplicant.applicant.name}
                 </h4>
-                <p className="">{selectedApplicant.applicant.email}</p>
+                <p className="text-gray-600">{selectedApplicant.applicant.email}</p>
                 </div>
+
+                
 
 
                 </div>
