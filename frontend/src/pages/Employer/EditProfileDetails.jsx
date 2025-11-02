@@ -167,6 +167,30 @@ const EditProfileDetails = ({
                     </div>
                   </div>
                 </div>
+
+                {/* Action Buttons */}
+                <div className="">
+                  <button
+                    onClick={handleCancel}
+                    className=""
+                  >
+                    <X className="" />
+                    <span>Cancel</span>
+                  </button>
+                  <button
+                  onClick={handleSave}
+                  disabled={saving || uploading.avatar || uploading.logo}
+                  className=""
+                >
+                  {saving ? (
+                    <div className=""></div>
+                  ) : (
+                    <Save className="" />
+                  )}
+                  <span>{saving ? "Saving..." : "Save Changes"}</span>
+                </button>
+                </div>
+
               </div>
             </div>
           </div>
