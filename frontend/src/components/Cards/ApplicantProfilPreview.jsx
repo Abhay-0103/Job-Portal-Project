@@ -83,8 +83,67 @@ const ApplicantProfilPreview = ({
                 <p className="text-gray-600">{selectedApplicant.applicant.email}</p>
                 </div>
 
-                
+                <div className="">
+                    <div className="">
+                        <h5 className="">
+                            Applied Position
+                        </h5>
+                        <p className="">
+                            {selectedApplicant.job.title}
+                        </p>
+                        <p className="">
+                            {selectedApplicant.job.location} . {selectedApplicant.job.type}
+                        </p>
+                    </div>
 
+                    <div className="">
+                        <h5 className="">
+                            Application Details
+                        </h5>
+                        <div className="">
+                            <div className="">
+                                <span className="">Status: </span>
+                                <StatusBadge status={currentStatus} />
+                            </div>
+                            <div className="">
+                                <span className="">Applied Date: </span>
+                                <span className="">{moment(selectedApplicant.createdAt)?.format('DD MM YYYY')}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                    onClick={() =>
+                        handleDownloadResume(selectedApplicant.applicant.resume)
+                    }
+                    className=""
+                    >
+                        <Download className="" />
+                        Download Resume
+                    </button>
+
+                    {/* Status Update Dropdown */}
+                    <div className="">
+                        <label className="">
+                            Change Application Status
+                        </label>
+                        <select
+                            value={currentStatus}
+                            onChange={onChangeStatus}
+                            disabled={loading}
+                            className=""
+                        >
+                            {statusOptions.map((status) => (
+                                <option key={status} value={status}>
+                                    {status}
+                                </option>
+                            ))}
+                        </select>
+                    {loading && (
+                        <p className="">Updating status...</p>
+                    )}
+                    </div>
+                    </div>
 
                 </div>
                 </div>
