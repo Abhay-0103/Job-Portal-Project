@@ -9,6 +9,7 @@ import axiosInstance from '../../utils/axiosInstance'
 import { API_PATHS } from '../../utils/apiPaths'
 import uploadImage from '../../utils/uploadImage'
 import DashboardLayout from '../../components/layout/DashboardLayout'
+import EditProfileDetails from './EditProfileDetails'
 
 const EmployerProfilePage = () => {
 
@@ -45,6 +46,20 @@ const EmployerProfilePage = () => {
     setFormData({ ...profileData });
     setEditMode(false);
   };
+
+  if (editMode) {
+    return (
+      <EditProfileDetails
+        formData={formData}
+        handleInputChange={handleInputChange}
+        handleImageChange={handleImageChange}
+        handleSave={handleSave}
+        handleCancel={handleCancel}
+        uploading={uploading}
+        saving={saving}
+      />
+    );
+  }
 
   return (
     <DashboardLayout activeMenu='company-profile'>
