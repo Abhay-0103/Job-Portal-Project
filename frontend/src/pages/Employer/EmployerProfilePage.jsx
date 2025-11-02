@@ -36,7 +36,22 @@ const EmployerProfilePage = () => {
     }));
   };
 
-  const handleImageUpload = async (file, type) => {};
+  const handleImageUpload = async (file, type) => {
+    setUploading((prev) => ({ ...prev, [type]: true }));
+
+    try {
+      const imgUploadRes = await uploadImage(file);
+      const avatarUrl = imgUploadRes.imageUrl || "";
+
+      // Update form data with new image URL
+      const field = type === "avatar" ? "avatar" : "companyLogo";
+      handleInputChange(field, avatarUrl);
+    } catch (error) {
+      console.error("Image upload failed:", error);
+    } finally {
+      setUploading((prev) => ({ ...prev, [type]: false }));
+    }
+  };
 
   const handleImageChange = (e, type) => {};
 
