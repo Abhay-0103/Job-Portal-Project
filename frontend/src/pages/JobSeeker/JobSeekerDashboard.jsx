@@ -11,6 +11,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { useAuth } from "../../context/AuthContext";
 import FilterContent from "./components/FilterContent";
+import SearchHeader from "./components/SearchHeader";
 
 const JobSeekerDashboard = () => {
   const { user } = useAuth();
@@ -206,7 +207,26 @@ const JobSeekerDashboard = () => {
     return <LoadingSpinner />;
   }
 
-  return <div>JobSeekerDashboard</div>;
+  return (
+    <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
+
+
+      <div className="min-h-screen mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
+          {/* Search Header */}
+          <SearchHeader
+            filters={filters}
+            handleFilterChange={handleFilterChange}
+          />
+
+
+          </div>
+
+          {/* Mobile Filters Overlay */}
+          <MobileFilterOverlay />
+          </div>
+          </div>
+  )
 };
 
 export default JobSeekerDashboard;
