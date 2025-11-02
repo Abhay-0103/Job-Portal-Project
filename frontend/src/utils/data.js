@@ -69,7 +69,7 @@ export const employerFeatures = [
 
 // Navigation items Configuration
 export const NAVIGATION_MENU = [
-    { id: "employers-dashboard", name: "Dashboard", icon: LayoutDashboard },
+    { id: "employer-dashboard", name: "Dashboard", icon: LayoutDashboard },
     { id: "post-job", name: "Post a Job", icon: Plus },
     { id: "manage-jobs", name: "Manage Jobs", icon: Briefcase },
     { id: "company-profile", name: "Company Profile", icon: Building2 },
