@@ -119,7 +119,15 @@ const EmployerProfilePage = () => {
                     </div>
                   </div>
 
-
+                {/* Company Description */}
+                <div className='mt-8'>
+                  <h2 className='text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-6'>
+                    About the Company
+                  </h2>
+                  <p className='text-sm text-gray-700 leading-relaxed bg-gray-50 p-6 rounded-lg'>
+                    {profileData.companyDescription}
+                  </p>
+                </div>
                   </div>
               </div>
           </div>
