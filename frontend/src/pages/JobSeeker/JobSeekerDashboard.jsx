@@ -168,7 +168,23 @@ const JobSeekerDashboard = () => {
     </div>
   );
 
-  const toggleSaveJob = async (jobId, isSaved) => {};
+  const toggleSaveJob = async (jobId, isSaved) => {
+
+    try {
+      if (isSaved) {
+        await axiosInstance.delete(API_PATHS.JOBS.UNSAVE_JOB(jobId));
+        toast.success("Job removed successfully");
+      } else {
+        await axiosInstance.post(API_PATHS.JOBS.SAVE_JOB(jobId));
+        toast.success("Job saved successfully");
+      }
+
+      fetchJobs();
+    } catch (err) {
+      console.log("Error saving/removing job:", err);
+      toast.error("Failed to update saved jobs. Please try again.");
+    }
+  };
 
   const applyToJob = async (jobId) => {};
 
