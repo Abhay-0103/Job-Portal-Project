@@ -71,7 +71,7 @@ const JobDetails = () => {
             {/* Hero section with clean background */}
             <div className='relative px-0 pb-8 border-b border-gray-100'>
               <div className='relative z-10'>
-                 className='flex items-center gap-3 mb-6'>
+                 <div className='flex items-center gap-3 mb-6'>
                   {jobDetails?.company?.companyLogo ? (
                     <img
                   src={jobDetails?.company?.companyLogo}
@@ -135,28 +135,28 @@ const JobDetails = () => {
                 {/* Content Section */}
                 <div className='px-0 pb-8 space-y-8'>
                   {/* Salary Section */}
-                  <div className=''>
-                    <div className=''></div>
-                    <div className=''>
-                      <div className=''>
-                        <div className=''>
-                          <div className=''>
-                            <DollarSign className='' />
+                  <div className='relative overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 p-6 rounded-2xl'>
+                    <div className='absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-full -translate-y-16 translate-x-16'></div>
+                    <div className='relative z-10'>
+                      <div className='flex items-center justify-between'>
+                        <div className='flex items-center space-x-3'>
+                          <div className='p-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl'>
+                            <DollarSign className='h-6 w-6 text-white' />
                             </div>
                             <div>
-                              <h3 className=''>
+                              <h3 className='text-sm font-semibold text-gray-900 mb-1'>
                                 Compensation
                               </h3>
-                              <div className=''>
+                              <div className='text-lg font-bold text-gray-900'>
                                 {jobDetails.salaryMin} - {jobDetails.salaryMax} 
-                                <span className=''> 
+                                <span className='text-lg text-gray-600 font-normal ml-1'> 
                                   per year
                                 </span>
                               </div>
                             </div>
                           </div>
-                          <div className=''>
-                            <Users className='' />
+                          <div className='flex items-center space-x-2 text-sm text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full'>
+                            <Users className='h-4 w-4' />
                             <span>Competitive</span>
                           </div>
                           <div>
@@ -164,27 +164,27 @@ const JobDetails = () => {
                           </div>
 
                           {/* Job Description */}
-                          <div className=''>
-                            <h3 className=''>
-                              <div className=''></div>
-                              <span className=''>About This Role</span>
+                          <div className='space-y-4'>
+                            <h3 className='text-2xl font-bold text-gray-900 flex items-center space-x-3'>
+                              <div className='w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full'></div>
+                              <span className=''text-lg>About This Role</span>
                             </h3>
                             <div
-                              className=''>
-                                <div className=''>
+                              className='bg-gray-50 border border-gray-100 rounded-xl p-6'>
+                                <div className='text-sm text-gray-700 leading-relaxed whitespace-pre-wrap'>
                                   {jobDetails.description}
                                 </div>
                             </div>
                           </div>
 
                           {/* Requirements Section */}
-                          <div className=''>
-                            <h3 className=''>
-                              <div className=''></div>
-                              <span className=''>What We're Looking For</span>
+                          <div className='space-y-4'>
+                            <h3 className='text-2xl font-bold text-gray-900 flex items-center space-x-3'>
+                              <div className='w-1 h-8 bg-gradient-to-b from-purple-500 to-pink-600 rounded-full'></div>
+                              <span className='text-lg'>What We're Looking For</span>
                             </h3>
-                            <div className=''>
-                              <div className=''></div>
+                            <div className='bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6'>
+                              <div className='text-sm text-gray-700 leading-relaxed whitespace-pre-wrap'>
                                 {jobDetails.requirements}
                               </div>
                           </div>
