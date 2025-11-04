@@ -133,8 +133,62 @@ const JobDetails = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className=''>
+                <div className='px-0 pb-8 space-y-8'>
+                  {/* Salary Section */}
+                  <div className=''>
+                    <div className=''></div>
+                    <div className=''>
+                      <div className=''>
+                        <div className=''>
+                          <div className=''>
+                            <DollarSign className='' />
+                            </div>
+                            <div>
+                              <h3 className=''>
+                                Compensation
+                              </h3>
+                              <div className=''>
+                                {jobDetails.salaryMin} - {jobDetails.salaryMax} 
+                                <span className=''> 
+                                  per year
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className=''>
+                            <Users className='' />
+                            <span>Competitive</span>
+                          </div>
+                          <div>
+                            </div>
+                          </div>
 
+                          {/* Job Description */}
+                          <div className=''>
+                            <h3 className=''>
+                              <div className=''></div>
+                              <span className=''>About This Role</span>
+                            </h3>
+                            <div
+                              className=''>
+                                <div className=''>
+                                  {jobDetails.description}
+                                </div>
+                            </div>
+                          </div>
+
+                          {/* Requirements Section */}
+                          <div className=''>
+                            <h3 className=''>
+                              <div className=''></div>
+                              <span className=''>What We're Looking For</span>
+                            </h3>
+                            <div className=''>
+                              <div className=''></div>
+                                {jobDetails.requirements}
+                              </div>
+                          </div>
+                        </div>
 
 
                   </div>
