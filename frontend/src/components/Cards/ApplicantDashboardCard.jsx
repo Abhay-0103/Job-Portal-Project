@@ -1,4 +1,5 @@
-{/*}
+{
+  /*}
 import React from "react";
 import { Clock } from "lucide-react";
 
@@ -32,14 +33,20 @@ const ApplicantDashboardCard = ({ applicant, position, time }) => {
 };
 
 export default ApplicantDashboardCard;
-*/}
+*/
+}
 
-
-{/* Ai KA code */}
+{
+  /* Ai KA code */
+}
 import React from "react";
 import { Clock } from "lucide-react";
 
-const ApplicantDashboardCard = ({ applicant = {}, position = "", time = "" }) => {
+const ApplicantDashboardCard = ({
+  applicant = {},
+  position = "",
+  time = "",
+}) => {
   // Safely extract applicant name and initials
   const name = applicant?.name || "Unknown Applicant";
   const initials =
