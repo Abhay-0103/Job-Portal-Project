@@ -13,6 +13,7 @@ import { useAuth } from "../../context/AuthContext";
 import FilterContent from "./components/FilterContent";
 import SearchHeader from "./components/SearchHeader";
 import Navbar from "../../components/layout/Navbar";
+import JobCard from "../../components/Cards/JobCard";
 
 const JobSeekerDashboard = () => {
   const { user } = useAuth();
