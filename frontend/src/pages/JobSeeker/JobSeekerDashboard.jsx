@@ -171,7 +171,6 @@ const JobSeekerDashboard = () => {
   );
 
   const toggleSaveJob = async (jobId, isSaved) => {
-
     try {
       if (isSaved) {
         await axiosInstance.delete(API_PATHS.JOBS.UNSAVE_JOB(jobId));
@@ -189,7 +188,6 @@ const JobSeekerDashboard = () => {
   };
 
   const applyToJob = async (jobId) => {
-
     try {
       if (jobId) {
         await axiosInstance.post(API_PATHS.APPLICATIONS.APPLY_TO_JOB(jobId));
@@ -224,16 +222,16 @@ const JobSeekerDashboard = () => {
             {/* Desktop Filters Sidebar */}
             <div className="hidden lg:block w-80 flex-shrink-0">
               <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 sticky top-20">
-              <h3 className="font-bold text-gray-900 text-xl mb-6">
-                Filter Jobs
-              </h3>
-              <FilterContent
-                toggleSection={toggleSection}
-                clearAllFilters={clearAllFilters}
-                expandedSections={expandedSections}
-                filters={filters}
-                handleFilterChange={handleFilterChange}
-              />
+                <h3 className="font-bold text-gray-900 text-xl mb-6">
+                  Filter Jobs
+                </h3>
+                <FilterContent
+                  toggleSection={toggleSection}
+                  clearAllFilters={clearAllFilters}
+                  expandedSections={expandedSections}
+                  filters={filters}
+                  handleFilterChange={handleFilterChange}
+                />
               </div>
             </div>
 
@@ -254,50 +252,89 @@ const JobSeekerDashboard = () => {
                 <div className="flex items-center justify-between lg:justify-end gap-4">
                   {/* Mobile Filter Button */}
                   <button
-                  onClick={() => setShowMobileFilters(true)}
-                  className="lg:hidden flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-gray-200 font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  <Filter className="w-4 h-4" />
-                  Filters
-                </button>
+                    onClick={() => setShowMobileFilters(true)}
+                    className="lg:hidden flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-gray-200 font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    <Filter className="w-4 h-4" />
+                    Filters
+                  </button>
 
-                <div className="flex items-center gap-3 lg:gap-4">
-                  <div className="flex items-center border border-gray-200 rounded-xl p-1 bg-white">
-                    <button
-                      onClick={() => setViewMode("grid")}
-                      className={`p-2 rounded-lg transition-colors ${
-                        viewMode === "grid"
-                          ? "bg-blue-500 text-white shasdow-sm"
-                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                      }`}
-                    >
-                      <Grid className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => setViewMode("list")}
-                      className={`p-2 rounded-lg transition-colors ${
-                        viewMode === "list"
-                          ? "bg-blue-500 text-white shadow-sm"
-                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                      }`}
-                    >
-                      <List className="w-4 h-4" />
-                    </button>
+                  <div className="flex items-center gap-3 lg:gap-4">
+                    <div className="flex items-center border border-gray-200 rounded-xl p-1 bg-white">
+                      <button
+                        onClick={() => setViewMode("grid")}
+                        className={`p-2 rounded-lg transition-colors ${
+                          viewMode === "grid"
+                            ? "bg-blue-500 text-white shasdow-sm"
+                            : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        }`}
+                      >
+                        <Grid className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => setViewMode("list")}
+                        className={`p-2 rounded-lg transition-colors ${
+                          viewMode === "list"
+                            ? "bg-blue-500 text-white shadow-sm"
+                            : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        }`}
+                      >
+                        <List className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-              </div>
 
-
+              {/* Jobs Grid */}
+              {jobs.length === 0 ? (
+                <div className="text-center py-16 lg:py-20 bg-white/60 backdrop-blur-xl rounedd-2xl border border-white/20">
+                  <div className="text-gray-400 mb-6">
+                    <Search className="w-16 h-16 mx-auto" />
+                  </div>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
+                    No Jobs Found.
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Try adjusting your filters or search criteria.
+                  </p>
+                  <button
+  onClick={clearAllFilters}
+  className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors"
+>
+  Clear Filters
+</button>
                 </div>
-                </div>
+              ) : (
+                <>
+                  <div
+                    className={
+                      viewMode === "grid"
+                        ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 lg:gap-6"
+                        : "space-y-4 lg:space-y-6"
+                    }
+                  >
+                    {jobs.map((job) => (
+                      <JobCard
+                        key={job._id}
+                        job={job}
+                        onClick={() => navigate(`/job/${job._id}`)}
+                        onToggleSave={() => toggleSaveJob(job._id, job.isSaved)}
+                        onApply={() => applyToJob(job._id)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
+        </div>
 
-          {/* Mobile Filters Overlay */}
-          <MobileFilterOverlay />
-          </div>
-          </div>
-  )
+        {/* Mobile Filters Overlay */}
+        <MobileFilterOverlay />
+      </div>
+    </div>
+  );
 };
 
 export default JobSeekerDashboard;
