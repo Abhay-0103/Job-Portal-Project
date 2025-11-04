@@ -220,7 +220,77 @@ const JobSeekerDashboard = () => {
             handleFilterChange={handleFilterChange}
           />
 
+          <div className="">
+            {/* Desktop Filters Sidebar */}
+            <div className="">
+              <div className="">
+              <h3 className="">
+                Filter Jobs
+              </h3>
+              <FilterContent
+                toggleSection={toggleSection}
+                clearAllFilters={clearAllFilters}
+                expandedSections={expandedSections}
+                filters={filters}
+                handleFilterChange={handleFilterChange}
+              />
+              </div>
+            </div>
 
+            {/* Main Content Area */}
+            <div className="">
+              {/* Result Header */}
+              <div className="">
+                <div>
+                  <p className="">
+                    Showing{" "}
+                    <span className="">
+                      {jobs.length}
+                    </span>{" "}
+                    Jobs
+                  </p>
+                </div>
+
+                <div className="">
+                  {/* Mobile Filter Button */}
+                  <button
+                  onClick={() => setShowMobileFilters(true)}
+                  className=""
+                >
+                  <Filter className="" />
+                  Filters
+                </button>
+
+                <div className="">
+                  <div className="">
+                    <button
+                      onClick={() => setViewMode("grid")}
+                      className={`p-2 rounded-lg transition-colors ${
+                        viewMode === "grid"
+                          ? "bg-blue-500 text-white shasdow-sm"
+                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                      }`}
+                    >
+                      <Grid className="" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode("list")}
+                      className={`p-2 rounded-lg transition-colors ${
+                        viewMode === "list"
+                          ? "bg-blue-500 text-white shadow-sm"
+                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                      }`}
+                    >
+                      <List className="" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+
+                </div>
+                </div>
           </div>
 
           {/* Mobile Filters Overlay */}
