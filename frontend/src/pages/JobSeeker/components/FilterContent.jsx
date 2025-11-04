@@ -3,7 +3,7 @@ import React from "react";
 import { ChevronDown, ChevronUp } from "lucide-react"
 
 // Local Imports
-import { CATEGORIES, JOB_TYPES} from "../../../utils/data";
+import { CATEGORIES, JOB_TYPES } from "../../../utils/data";
 import SalaryRangeSlider from "../../../components/Input/SalaryRangeSlider";
 
 const FilterSection = ({ title, isExpanded, onToggle }) => (
@@ -32,10 +32,10 @@ const FilterContent = ({
 }) => {
 
   return <>
-  <div className="">
+  <div className="flex items-center justify-between mb-6">
     <button
       onClick={clearAllFilters}
-      className=""
+      className="text-blue-600 hover:text-blue-700 font-semibold text-sm"
     > 
       Clear All
     </button>
@@ -46,17 +46,17 @@ const FilterContent = ({
     isExpanded={expandedSections?.jobType}
     onToggle={() => toggleSection("jobType")}
   >
-    <div className="">
+    <div className="space-y-3">
       {JOB_TYPES.map((type) => (
-        <label key={type.value} className="">
+        <label key={type.value} className="flex items-center cursor-pointer">
           <input
             type="checkbox"
-            className=""
+            className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             checked={filters?.type === type.value}
             onChange={(e) => handleFilterChange("type", e.target.checked ? type.value : "")
             }
           />
-          <span className="">{type.label}</span>
+          <span className="ml-3 text-gray-700 font-medium">{type.label}</span>
         </label>
       ))}
     </div>
@@ -75,17 +75,17 @@ const FilterContent = ({
     isExpanded={expandedSections?.categories}
     onToggle={() => toggleSection("categories")}
   >
-    <div className="">
+    <div className="space-y-3">
       {CATEGORIES.map((type) => (
-        <label key={type.value} className="">
+        <label key={type.value} className="flex items-center cursor-pointer">
           <input
             type="checkbox"
-            className=""
+            className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             checked={filters?.category === type.value}
             onChange={(e) => handleFilterChange("category", e.target.checked ? type.value : "")
             }
           />
-          <span className="">{type.value}</span>
+          <span className="ml-3 text-gray-700 font-medium">{type.value}</span>
         </label>
       ))}
     </div>
