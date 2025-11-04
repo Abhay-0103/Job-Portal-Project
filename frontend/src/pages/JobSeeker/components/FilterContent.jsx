@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp } from "lucide-react"
 import { CATEGORIES, JOB_TYPES } from "../../../utils/data";
 import SalaryRangeSlider from "../../../components/Input/SalaryRangeSlider";
 
-const FilterSection = ({ title, isExpanded, onToggle }) => (
+const FilterSection = ({ title, isExpanded, onToggle, children }) => (
   <div className="border-b border-gray-200 pb-4 mb-4 last:border-b-0">
     <button
     onClick={onToggle}
