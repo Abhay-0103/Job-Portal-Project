@@ -18,7 +18,7 @@ import DashboardLayout from "../../components/layout/DashboardLayout";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { getInitials } from "../../utils/helper";
-import StatusBadge from "../../components/layout/StatusBadge";
+import StatusBadge from "../../components/StatusBadge";
 import ApplicantProfilPreview from "../../components/Cards/ApplicantProfilPreview";
 
 const ApplicationViewer = () => {
