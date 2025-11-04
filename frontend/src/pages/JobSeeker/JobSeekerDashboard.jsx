@@ -220,11 +220,11 @@ const JobSeekerDashboard = () => {
             handleFilterChange={handleFilterChange}
           />
 
-          <div className="">
+          <div className="flex gap-6 lg:gap-8">
             {/* Desktop Filters Sidebar */}
-            <div className="">
-              <div className="">
-              <h3 className="">
+            <div className="hidden lg:block w-80 flex-shrink-0">
+              <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 sticky top-20">
+              <h3 className="font-bold text-gray-900 text-xl mb-6">
                 Filter Jobs
               </h3>
               <FilterContent
@@ -238,31 +238,31 @@ const JobSeekerDashboard = () => {
             </div>
 
             {/* Main Content Area */}
-            <div className="">
+            <div className="flex-1 min-w-0">
               {/* Result Header */}
-              <div className="">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 lg:mb-8 gap-4">
                 <div>
-                  <p className="">
+                  <p className="text-gray-600 text-sm lg:text-base">
                     Showing{" "}
-                    <span className="">
+                    <span className="font-bold text-gray-900">
                       {jobs.length}
                     </span>{" "}
                     Jobs
                   </p>
                 </div>
 
-                <div className="">
+                <div className="flex items-center justify-between lg:justify-end gap-4">
                   {/* Mobile Filter Button */}
                   <button
                   onClick={() => setShowMobileFilters(true)}
-                  className=""
+                  className="lg:hidden flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-gray-200 font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                 >
-                  <Filter className="" />
+                  <Filter className="w-4 h-4" />
                   Filters
                 </button>
 
-                <div className="">
-                  <div className="">
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="flex items-center border border-gray-200 rounded-xl p-1 bg-white">
                     <button
                       onClick={() => setViewMode("grid")}
                       className={`p-2 rounded-lg transition-colors ${
@@ -271,7 +271,7 @@ const JobSeekerDashboard = () => {
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                       }`}
                     >
-                      <Grid className="" />
+                      <Grid className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setViewMode("list")}
@@ -281,7 +281,7 @@ const JobSeekerDashboard = () => {
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                       }`}
                     >
-                      <List className="" />
+                      <List className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
