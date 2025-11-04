@@ -34,7 +34,7 @@ const SavedJobs = () => {
     }
   };
 
-  const handelUnsaveJob = async (jobId) => {
+  const handleUnsaveJob = async (jobId) => {
     try {
       await axiosInstance.delete(API_PATHS.JOBS.UNSAVE_JOB(jobId));
       toast.success("Job removed successfully!");
@@ -73,7 +73,7 @@ const SavedJobs = () => {
                       </div>
 
                       <div className='flex items-center gap-3 lg:gap-4'>
-                        <div className='flex items-center border border-gray-200 rounedd-xl p-1 bg-white'>
+                        <div className='flex items-center border border-gray-200 rounded-xl p-1 bg-white'>
                           <button
                             onClick={() => setViewMode('grid')}
                             className={`p-2 rounded-lg transition-colors ${
@@ -131,7 +131,7 @@ const SavedJobs = () => {
                                   key={savedJob._id}
                                   job={savedJob?.job}
                                   onClick={() => navigate(`/job/${savedJob?.job._id}`)}
-                                  onToggleSave={() => handelUnsaveJob(savedJob?.job._id)}
+                                  onToggleSave={() => handleUnsaveJob(savedJob?.job._id)}
                                   isSaved={true}
                                 />
                         ))}
