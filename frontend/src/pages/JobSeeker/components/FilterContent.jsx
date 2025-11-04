@@ -64,7 +64,7 @@ const FilterContent = ({
 
   <FilterSection
     title="Salary Range"
-    isExpanded={expandedSections.salaryRange}
+    isExpanded={expandedSections.salary}
     onToggle={() => toggleSection("salary")}
   >
     <SalaryRangeSlider filters={filters} handleFilterChange={handleFilterChange} />
