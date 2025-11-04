@@ -1,7 +1,7 @@
+// AI Code 
 // Global Imports
-import React from "react";
+import React, { useState } from "react";
 import { Download, X } from "lucide-react";
-import { useState } from "react";
 import moment from "moment";
 import toast from "react-hot-toast";
 
@@ -19,8 +19,11 @@ const ApplicantProfilPreview = ({
   handleDownloadResume,
   handleClose,
 }) => {
-  const [currentStatus, setCurrentStatus] = useState(selectedApplicant.status);
+  const [currentStatus, setCurrentStatus] = useState(selectedApplicant?.status || "Applied");
   const [loading, setLoading] = useState(false);
+
+  const applicant = selectedApplicant?.applicant || {};
+  const job = selectedApplicant?.job || {};
 
   const onChangeStatus = async (e) => {
     const newStatus = e.target.value;
@@ -34,14 +37,12 @@ const ApplicantProfilPreview = ({
       );
 
       if (response.status === 200) {
-        // Update local state after successful update
         setSelectedApplicant({ ...selectedApplicant, status: newStatus });
         toast.success("Application Status Updated Successfully");
       }
     } catch (err) {
       console.error("Error updating status:", err);
-      // Optionally revert status on error
-      setCurrentStatus(selectedApplicant.status);
+      setCurrentStatus(selectedApplicant?.status || "Applied");
     } finally {
       setLoading(false);
     }
@@ -66,40 +67,39 @@ const ApplicantProfilPreview = ({
         {/* Modal Content */}
         <div className="p-6">
           <div className="text-center mb-6">
-            {selectedApplicant.applicant.avatar ? (
+            {applicant?.avatar ? (
               <img
-                src={selectedApplicant.applicant.avatar}
-                alt={selectedApplicant.applicant.name}
+                src={applicant.avatar}
+                alt={applicant?.name || "Applicant"}
                 className="h-20 w-20 rounded-full object-cover mx-auto"
               />
             ) : (
               <div className="h-20 w-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
                 <span className="text-blue-600 font-semibold text-xl">
-                  {getInitials(selectedApplicant.applicant.name)}
+                  {getInitials(applicant?.name || "A")}
                 </span>
               </div>
             )}
+
             <h4 className="mt-4 text-xl font-semibold text-gray-900">
-              {selectedApplicant.applicant.name}
+              {applicant?.name || "Unknown Applicant"}
             </h4>
-            <p className="text-gray-600">{selectedApplicant.applicant.email}</p>
+            <p className="text-gray-600">{applicant?.email || "No email provided"}</p>
           </div>
 
           <div className="space-y-4">
+            {/* Job Info */}
             <div className="bg-gray-50 rounded-lg p-4">
-              <h5 className="font-medium text-gray-900 mb-2">
-                Applied Position
-              </h5>
-              <p className="text-gray-700">{selectedApplicant.job.title}</p>
-              <p className="text-gray-600" text-sm mt-1>
-                {selectedApplicant.job.location} . {selectedApplicant.job.type}
+              <h5 className="font-medium text-gray-900 mb-2">Applied Position</h5>
+              <p className="text-gray-700">{job?.title || "N/A"}</p>
+              <p className="text-gray-600 text-sm mt-1">
+                {job?.location || "Unknown"} • {job?.type || "N/A"}
               </p>
             </div>
 
+            {/* Application Details */}
             <div className="bg-gray-50 rounded-lg p-4">
-              <h5 className="font-medium text-gray-900 mb-2">
-                Application Details
-              </h5>
+              <h5 className="font-medium text-gray-900 mb-2">Application Details</h5>
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Status: </span>
@@ -108,23 +108,28 @@ const ApplicantProfilPreview = ({
                 <div className="flex justify-between">
                   <span className="text-gray-600">Applied Date: </span>
                   <span className="text-gray-900">
-                    {moment(selectedApplicant.createdAt)?.format("DD MM YYYY")}
+                    {moment(selectedApplicant?.createdAt)?.format("DD MMM YYYY")}
                   </span>
                 </div>
               </div>
             </div>
 
-            <button
-              onClick={() =>
-                handleDownloadResume(selectedApplicant.applicant.resume)
-              }
-              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Download className="h-4 w-4" />
-              Download Resume
-            </button>
+            {/* Resume Download */}
+            {applicant?.resume ? (
+              <button
+                onClick={() => handleDownloadResume(applicant.resume)}
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Download className="h-4 w-4" />
+                Download Resume
+              </button>
+            ) : (
+              <p className="text-sm text-gray-500 text-center">
+                No resume uploaded.
+              </p>
+            )}
 
-            {/* Status Update Dropdown */}
+            {/* Status Update */}
             <div className="mt-4">
               <label className="block mb-1 text-sm text-gray-700 font-medium">
                 Change Application Status

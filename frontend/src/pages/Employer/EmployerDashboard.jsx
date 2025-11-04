@@ -185,7 +185,7 @@ const EmployerDashboard = () => {
                     <ApplicantDashboardCard
                       key={index}
                       applicant={data?.applicant || ""}
-                      position={data?.job?.title || ""}
+                      position={data?.job?.title || "Untitled Job"}
                       time={moment(data?.updatedAt).fromNow()}
                     />
                   ))}
