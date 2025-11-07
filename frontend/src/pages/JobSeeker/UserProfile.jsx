@@ -124,7 +124,78 @@ const UserProfile = () => {
   }, [user]);
 
   return (
-    <div>UserProfile</div>
+    <div className=''>
+      <Navbar />
+
+      <div className=''>
+        <div className=''>
+          <div className=''>
+            {/* Header */}
+            <div className=''>
+              <h1 className=''>Profile</h1>
+              </div>
+
+              <div className=''>
+                <div className=''>
+                  <div className=''>
+                    <div className=''>
+                      <img
+                        src={formData?.avatar}
+                        alt='Avatar'
+                        className=''
+                      />
+                      {uploading?. avatar && (
+                        <div className=''>
+                          <div className=''></div>
+                          </div>
+                      )}
+                      </div>
+
+                      <div>
+                        <label className=''>
+                          <span className=''>Choose Avatar</span>
+                          <input
+                            type='file'
+                            accept='image/*'
+                            onChange={(e) => handleImageChange(e, "avatar")}
+                            className=''
+                          />
+                        </label>
+                      </div>
+                    </div>
+
+
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className=''>
+                      <Link
+                      onClick={handleCancel}
+                      to='/find-jobs'
+                      className=''
+                      >
+                        <X className='' />
+                        <span>Cancel</span>
+                      </Link>
+
+                      <button
+                        onClick={handleSave}
+                        disabled={saving || uploading.avatar || uploading.logo}
+                        className=''
+                      >
+                        {saving ? (
+                          <div className=''></div>
+                        ) : (
+                          <Save className='' />
+                        )}
+                        <span>{saving ? "Saving..." : "Save Changes"}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
   )
 }
 
