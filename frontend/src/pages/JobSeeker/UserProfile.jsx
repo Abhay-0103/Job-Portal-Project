@@ -42,8 +42,12 @@ const UserProfile = () => {
 
       // Update form data with new image URL
       handleInputChange(type, avatarUrl);
+      toast.success(`${type === 'avatar' ? 'Avatar' : 'Resume'} uploaded successfully!`);
     } catch (error) {
       console.error("Image upload failed:", error);
+      toast.error(`Failed to upload ${type === 'avatar' ? 'avatar' : 'resume'}`);
+      // Reset the preview on error
+      handleInputChange(type, profileData[type]);
     } finally {
       setUploading((prev) => ({ ...prev, [type]: false }));
     }
@@ -78,6 +82,7 @@ const UserProfile = () => {
       }
     } catch (error) {
       console.error("Profile Update Failed", error);
+      toast.error(error.response?.data?.message || "Failed to update profile");
     } finally {
       setSaving(false);
     }
@@ -88,6 +93,10 @@ const UserProfile = () => {
   };
 
   const DeleteResume = async () => {
+    if (!window.confirm('Are you sure you want to delete your resume?')) {
+      return;
+    }
+
     setSaving(true);
 
     try {
@@ -100,12 +109,23 @@ const UserProfile = () => {
 
       if (response.status === 200) {
         toast.success("Resume deleted successfully!");
-        setProfileData({ ...formData, resume: "" });
-        updateUser({ ...formData, resume: "" });
-        setFormData({ ...formData, resume: "" });
+        const updatedData = { 
+          ...formData, 
+          resume: "" 
+        };
+        setProfileData(updatedData);
+        setFormData(updatedData);
+        
+        // Update user context with the response data if available
+        if (response.data?.user) {
+          updateUser(response.data.user);
+        } else {
+          updateUser({ ...user, resume: "" });
+        }
       }
     } catch (error) {
-      console.error("Profile Update Failed", error);
+      console.error("Resume deletion failed:", error);
+      toast.error(error.response?.data?.message || "Failed to delete resume");
     } finally {
       setSaving(false);
     }
@@ -116,6 +136,7 @@ const UserProfile = () => {
       name: user?.name || "",
       email: user?.email || "",
       avatar: user?.avatar || "",
+      resume: user?.resume || "",
     };
 
     setProfileData({ ...userData });
@@ -144,7 +165,7 @@ const UserProfile = () => {
                         alt='Avatar'
                         className='w-20 h-20 rounded-full object-cover border-4 border-gray-200'
                       />
-                      {uploading?. avatar && (
+                      {uploading.avatar && (
                         <div className='absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center'>
                           <div className='w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin'></div>
                           </div>

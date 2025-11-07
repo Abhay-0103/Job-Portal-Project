@@ -26,6 +26,7 @@ exports.updateProfile = async (req, res) => {
         res.json({
             _id: user._id,
             name: user.name,
+            email: user.email,
             avatar: user.avatar,
             role: user.role,
             companyName: user.companyName,
@@ -34,6 +35,7 @@ exports.updateProfile = async (req, res) => {
             resume: user.resume || "",
         });
     } catch (err) {
+        console.error('Error updating profile:', err);
         res.status(500).json({ message: err.message });
     }
 };
@@ -43,8 +45,9 @@ exports.deleteResume = async (req, res) => {
     try {
         const { resumeUrl } = req.body; // URL of the resume to be deleted
 
-        // Extract filename from URL
-        const filename = resumeUrl?.split('/')?.pop();
+        if (!resumeUrl) {
+            return res.status(400).json({ message: 'Resume URL is required' });
+        }
 
         const user = await User.findById(req.user._id);
         if (!user) {
@@ -55,20 +58,36 @@ exports.deleteResume = async (req, res) => {
             return res.status(403).json({ message: 'Only jobSeekers can delete resumes' });
         }
 
-        // construct file path
-        const filePath = path.join(__dirname, '../uploads', fileName);
+        // Extract filename from URL
+        const filename = resumeUrl?.split('/')?.pop();
 
-        // Check if file exists and delete
-        if (fs.existsSync(filePath)) {
-            fs.unlinkSync(filePath); // delete file from server
+        if (filename) {
+            // construct file path
+            const filePath = path.join(__dirname, '../uploads', filename);
+
+            // Check if file exists and delete
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath); // delete file from server
+                console.log(`Deleted file: ${filePath}`);
+            } else {
+                console.log(`File not found on server: ${filePath}`);
+            }
         }
 
         // Set user's resume field to null or empty string
         user.resume = '';
         await user.save();
 
-        res.json({ message: 'Resume deleted successfully' });
+        res.json({ message: 'Resume deleted successfully', user: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            role: user.role,
+            resume: user.resume
+        }});
     } catch (err) {
+        console.error('Error deleting resume:', err);
         res.status(500).json({ message: err.message });
     }
 };
