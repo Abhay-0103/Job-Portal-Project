@@ -818,11 +818,11 @@ Examples:
 
 ## 🙏 Acknowledgments
 
-- 🎓 **BTI College** - For providing the opportunity and resources
-- 💻 **Open Source Community** - For amazing tools and libraries
-- 📚 **Documentation** - React, Express, MongoDB, and TailwindCSS teams
-- 🎨 **Design Inspiration** - Modern job portal interfaces
-- 👥 **Contributors** - Thanks to everyone who has contributed to this project
+- 🎓 **BTI College** - For providing the opportunity and resources.
+- 💻 **Open Source Community** - For amazing tools and libraries.
+- 📚 **Documentation** - React, Express, MongoDB, and TailwindCSS teams.
+- 🎨 **Design Inspiration** - Modern job portal interfaces.
+- 👥 **Contributors** - Thanks to everyone who has contributed to this project.
 
 ### Built With
 
