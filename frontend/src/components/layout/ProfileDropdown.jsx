@@ -9,8 +9,20 @@ const ProfileDropdown = ({
   companyName,
   email,
   onLogout,
+  userRole,
 }) => {
   const navigate = useNavigate();
+
+  const handleViewProfile = () => {
+    console.log("User Role:", userRole);
+    console.log("Navigating to:", userRole === 'jobSeeker' ? '/profile' : '/company-profile');
+    
+    if (userRole === 'jobSeeker') {
+      navigate('/profile');
+    } else {
+      navigate('/company-profile');
+    }
+  };
 
   return <div className="relative">
     <button
@@ -32,7 +44,7 @@ const ProfileDropdown = ({
         )}
         <div className="hidden sm:block text-left">
           <p className="text-sm font-medium text-gray-900">{companyName}</p>
-          <p className="text-xs text-gray-500">Employer</p>
+          <p className="text-xs text-gray-500 capitalize">{userRole}</p>
         </div>
         <ChevronDown className="h-4 w-4 text-gray-400" />
       </button>
@@ -44,20 +56,19 @@ const ProfileDropdown = ({
           <p className="text-xs text-gray-500">{email}</p>
         </div>
 
-        <a
-        onClick={()=> navigate(userRole === 'jobseeker' ? '/profile' : '/company-profile')}
-          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+        <button
+        onClick={handleViewProfile}
+          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
           >
           View Profile
-        </a>
+        </button>
         <div className="border-t border-gray-100 mt-2 pt-2">
-          <a
-          href="#"
-            onClick={onLogout}
-            className="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+          <button
+          onClick={onLogout}
+            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
             >
               Sign Out
-          </a>
+          </button>
         </div>
       </div>
     )}
