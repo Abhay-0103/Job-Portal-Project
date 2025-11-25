@@ -15,7 +15,6 @@
 [![Express](https://img.shields.io/badge/Express-5.1-000000.svg)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-8.19-47A248.svg)](https://mongodb.com/)
 
-[![License](https://img.shields.io/badge/License-ISC-yellow.svg)](https://opensource.org/licenses/ISC)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen.svg)](https://github.com/Abhay-0103/Job-Portal-Project/graphs/commit-activity)
 
@@ -1915,44 +1914,6 @@ If you have any questions or need help with the project:
 - Resume builder tool
 - Company reviews and ratings
 - Interview scheduling system
-
----
-
-## 📄 License
-
-This project is licensed under the **ISC License**.
-
-```
-ISC License
-
-Copyright (c) 2025 Abhay Singh
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-```
-
----
-
-## 🤝 Code of Conduct
-
-We are committed to providing a welcoming and inspiring community for all. Please read our [Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/) before contributing.
-
-### Our Pledge
-
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
 
 ---
 
