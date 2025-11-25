@@ -69,7 +69,7 @@ const Hero = () => {
               className="cursor-pointer bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
               onClick={() => {
                 navigate(
-                  isAuthenticated && User?.role === "employer"
+                  isAuthenticated && user?.role === "employer"
                     ? "/employer-dashboard"
                     : "/login"
                 );
